@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap&subset=greek" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #0A0C10; }
+  a { color: #4D9FFF; text-decoration: none; }
+  a:hover { color: #7FB8FF; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</helmet>
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+  <!-- 1 — ΕΞΩΦΥΛΛΟ -->
+  <section data-label="Εξώφυλλο" data-speaker-notes="Καλωσόρισμα. Μία παρουσίαση που ενώνει στρατηγική, κοστολόγηση, είσοδο στην αγορά και προώθηση — σε απλά λόγια." style="background: linear-gradient(180deg, #0F1218 0%, #0A0C10 100%); color: #F2F4F7; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 120px 90px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 20px; animation: fadeUp 600ms cubic-bezier(0.22,1,0.36,1) both;">
+      <div style="width: 32px; height: 2px; background: #4D9FFF;"></div>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.28em; color: #8B94A3; text-transform: uppercase;">4IP × GRYPAS-AI · ΤΟ ΣΧΕΔΙΟ ΣΕ ΑΠΛΑ ΛΟΓΙΑ</span>
+      <div style="width: 32px; height: 2px; background: #4D9FFF;"></div>
+    </div>
+    <h1 style="font-size: 118px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.08; margin: 56px 0 0; animation: fadeUp 650ms cubic-bezier(0.22,1,0.36,1) 120ms both;">Το σχέδιο σε απλά λόγια</h1>
+    <p style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; color: #C7CDD6; letter-spacing: 0.06em; margin: 52px 0 0; animation: fadeUp 650ms cubic-bezier(0.22,1,0.36,1) 240ms both;">Τι είναι · Πώς βγαίνει · Πόσο κοστίζει · Πώς γίνεται γνωστό</p>
+    <div style="position: absolute; bottom: 40px; right: 120px; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.18em; color: #8B94A3;">01/17</div>
+  </section>
+
+  <!-- 2 — Η ΟΥΣΙΑ -->
+  <section data-label="Η ουσία" data-speaker-notes="Το πλαίσιο: δεν πρόκειται για ένα ακόμη site — αλλάζουμε το πώς μας βλέπει η αγορά." style="background: #0A0C10; color: #F2F4F7; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; justify-content: center; padding: 100px 120px 90px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="width: 28px; height: 2px; background: #4D9FFF;"></div>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.28em; color: #8B94A3;">Η ΟΥΣΙΑ</span>
+    </div>
+    <h2 style="font-size: 84px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; margin: 48px 0 0; max-width: 1450px;">Δεν φτιάχνουμε απλώς ένα site. Αλλάζουμε κατηγορία.</h2>
+    <p style="font-size: 36px; font-weight: 300; color: #C7CDD6; line-height: 1.55; margin: 48px 0 0; max-width: 1250px; text-wrap: pretty;">Η αξία σας υπάρχει ήδη. Απλώς δεν φαίνεται online — και στην ασφάλεια, το site είναι ο πρώτος έλεγχος εμπιστοσύνης.</p>
+    <div style="position: absolute; bottom: 40px; right: 120px; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.18em; color: #8B94A3;">02/17</div>
+  </section>
+
+  <!-- 3 — ΤΙ ΕΧΕΤΕ -->
+  <section data-label="Τι έχετε" data-speaker-notes="Δύο δυνάμεις: η εμπειρία της 4IP και η τεχνολογία του GRYPAS. Ο συνδυασμός είναι η διαφορά." style="background: #0A0C10; color: #F2F4F7; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; padding: 100px 120px 90px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="width: 28px; height: 2px; background: #4D9FFF;"></div>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.28em; color: #8B94A3;">ΤΙ ΕΧΕΤΕ</span>
+    </div>
+    <h2 style="font-size: 76px; font-weight: 600; letter-spacing: -0.02em; margin: 44px 0 0;">Δύο δυνάμεις, μαζί.</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 64px;">
+      <div style="background: #161B24; border: 1px solid #2A3442; border-radius: 12px; padding: 56px 56px 60px; display: flex; flex-direction: column; gap: 24px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; letter-spacing: 0.22em; color: #4D9FFF;">4IP</div>
+        <p style="font-size: 36px; font-weight: 400; line-height: 1.45; color: #F2F4F7; margin: 0;">Εμπειρία πεδίου, αληθινοί άνθρωποι, αξιοπιστία.</p>
+      </div>
+      <div style="background: #161B24; border: 1px solid #2A3442; border-radius: 12px; padding: 56px 56px 60px; display: flex; flex-direction: column; gap: 24px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; letter-spacing: 0.22em; color: #4D9FFF;">GRYPAS-AI</div>
+        <p style="font-size: 36px; font-weight: 400; line-height: 1.45; color: #F2F4F7; margin: 0;">Νέα τεχνολογία που ελέγχει το κινητό.</p>
+      </div>
+    </div>
+    <p style="font-size: 32px; font-weight: 300; color: #C7CDD6; margin: 56px 0 0;">Άνθρωπος + τεχνολογία = αυτό που σας ξεχωρίζει.</p>
+    <div style="position: absolute; bottom: 40px; right: 120px; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.18em; color: #8B94A3;">03/17</div>
+  </section>
+
+  <!-- 4 — ΤΑ 2 ΠΡΟΒΛΗΜΑΤΑ -->
+  <section data-label="Τα 2 προβλήματα" data-speaker-notes="Δύο κενά κοστίζουν πελάτες σήμερα: η εικόνα του 4ip.gr και η ανωνυμία του GRYPAS." style="background: #0A0C10; color: #F2F4F7; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; padding: 100px 120px 90px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="width: 28px; height: 2px; background: #4D9FFF;"></div>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.28em; color: #8B94A3;">ΤΙ ΔΙΟΡΘΩΝΟΥΜΕ</span>
+    </div>
+    <h2 style="font-size: 76px; font-weight: 600; letter-spacing: -0.02em; margin: 44px 0 0;">Δύο πράγματα κοστίζουν πελάτες.</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 64px;">
+      <div style="background: #161B24; border: 1px solid #2A3442; border-radius: 12px; padding: 56px; display: flex; flex-direction: column; gap: 28px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; color: #8B94A3; letter-spacing: 0.18em;">01</div>
+        <p style="font-size: 36px; font-weight: 400; line-height: 1.45; margin: 0;">Το 4ip.gr δείχνει λιγότερο σοβαρό απ' ό,τι είστε.</p>
+      </div>
+      <div style="background: #161B24; border: 1px solid #2A3442; border-radius: 12px; padding: 56px; display: flex; flex-direction: column; gap: 28px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; color: #8B94A3; letter-spacing: 0.18em;">02</div>
+        <p style="font-size: 36px; font-weight: 400; line-height: 1.45; margin: 0;">Στο GRYPAS δεν φαίνεται ποιος είναι πίσω — κι αυτό τρομάζει τον κόσμο.</p>
+      </div>
+    </div>
+    <div style="position: absolute; bottom: 40px; right: 120px; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.18em; color: #8B94A3;">04/17</div>
+  </section>
+
+  <!-- 5 — Η ΚΑΤΕΥΘΥΝΣΗ -->
+  <section data-label="Η ιδέα" data-speaker-notes="Η κεντρική ιδέα: από την υποψία στην τεχνική εικόνα. Ήρεμος τόνος, όχι φόβος." style="background: #0F1218; color: #F2F4F7; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 120px 90px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="width: 28px; height: 2px; background: #4D9FFF;"></div>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.28em; color: #8B94A3;">Η ΙΔΕΑ</span>
+      <div style="width: 28px; height: 2px; background: #4D9FFF;"></div>
+    </div>
+    <h2 style="font-size: 104px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.12; margin: 56px 0 0; max-width: 1500px;">Από την υποψία, στην τεχνική εικόνα.</h2>
+    <p style="font-size: 32px; font-weight: 300; color: #C7CDD6; margin: 56px 0 0;">Μιλάμε με ηρεμία, όχι με φόβο. Τεχνολογία με ανθρώπινη κρίση.</p>
+    <div style="position: absolute; bottom: 40px; right: 120px; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.18em; color: #8B94A3;">05/17</div>
+  </section>
+
+  <!-- 6 — ΕΜΠΙΣΤΟΣΥΝΗ -->
+  <section data-label="Εμπιστοσύνη" data-speaker-notes="Τρεις αποδείξεις εμπιστοσύνης: δείγμα έκθεσης, ξεκάθαρα όρια, το όνομα της 4IP." style="background: #0A0C10; color: #F2F4F7; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; padding: 100px 120px 90px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="width: 28px; height: 2px; background: #4D9FFF;"></div>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.28em; color: #8B94A3;">ΠΩΣ ΧΤΙΖΕΤΑΙ Η ΕΜΠΙΣΤΟΣΥΝΗ</span>
+    </div>
+    <h2 style="font-size: 76px; font-weight: 600; letter-spacing: -0.02em; margin: 44px 0 0;">Η εμπιστοσύνη δεν λέγεται, δείχνεται.</h2>
+    <div style="display: flex; flex-direction: column; margin-top: 64px; border-top: 1px solid #2A3442;">
+      <div style="display: flex; align-items: baseline; gap: 48px; padding: 40px 8px; border-bottom: 1px solid #2A3442;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; color: #4D9FFF;">01</span>
+        <p style="font-size: 36px; font-weight: 400; margin: 0;">Δείγμα έκθεσης — ο κόσμος βλέπει τι θα πάρει.</p>
+      </div>
+      <div style="display: flex; align-items: baseline; gap: 48px; padding: 40px 8px; border-bottom: 1px solid #2A3442;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; color: #4D9FFF;">02</span>
+        <p style="font-size: 36px; font-weight: 400; margin: 0;">Ξεκάθαρα λόγια για το τι ΔΕΝ κάνουμε.</p>
+      </div>
+      <div style="display: flex; align-items: baseline; gap: 48px; padding: 40px 8px; border-bottom: 1px solid #2A3442;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; color: #4D9FFF;">03</span>
+        <p style="font-size: 36px; font-weight: 400; margin: 0;">Σύνδεση με το όνομα της 4IP.</p>
+      </div>
+    </div>
+    <div style="position: absolute; bottom: 40px; right: 120px; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.18em; color: #8B94A3;">06/17</div>
+  </section>
+
+  <!-- 7 — ΓΙΑΤΙ ΤΩΡΑ -->
+  <section data-label="Γιατί τώρα" data-speaker-notes="Η ιδιωτικότητα αξίζει περισσότερο σήμερα. Χωρίς φόβο, χωρίς υπερβολές — απλώς η σωστή στιγμή." style="background: #0A0C10; color: #F2F4F7; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; justify-content: center; padding: 100px 120px 90px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="width: 28px; height: 2px; background: #4D9FFF;"></div>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.28em; color: #8B94A3;">ΓΙΑΤΙ ΤΩΡΑ</span>
+    </div>
+    <h2 style="font-size: 84px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; margin: 48px 0 0; max-width: 1400px;">Η ιδιωτικότητα αξίζει πιο πολύ από ποτέ.</h2>
+    <p style="font-size: 36px; font-weight: 300; color: #C7CDD6; line-height: 1.55; margin: 48px 0 0; max-width: 1350px; text-wrap: pretty;">Ο κόσμος ανησυχεί ολοένα και πιο πολύ για το ποιος βλέπει τα δεδομένα του. Ένα προϊόν που σέβεται την ιδιωτικότητα — δεν διαβάζει το περιεχόμενό σας, δεν κρατάει δεδομένα — αποκτά σήμερα ακόμα μεγαλύτερη αξία.</p>
+    <p style="font-size: 26px; font-weight: 300; color: #8B94A3; margin: 64px 0 0;">Χωρίς υπερβολές, χωρίς φόβο — απλώς η σωστή στιγμή για σοβαρή, διακριτική τεχνολογία.</p>
+    <div style="position: absolute; bottom: 40px; right: 120px; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.18em; color: #8B94A3;">07/17</div>
+  </section>
+
+  <!-- 8 — ΤΟ ΣΧΕΔΙΟ ΕΙΣΟΔΟΥ -->
+  <section data-label="Πώς βγαίνει" data-speaker-notes="Πέντε βήματα εισόδου στην αγορά, με σειρά — όχι όλα μαζί." style="background: #0F1218; color: #F2F4F7; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; padding: 100px 120px 90px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="width: 28px; height: 2px; background: #4D9FFF;"></div>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.28em; color: #8B94A3;">ΠΩΣ ΒΓΑΙΝΕΙ</span>
+    </div>
+    <h2 style="font-size: 76px; font-weight: 600; letter-spacing: -0.02em; margin: 44px 0 0;">Σιγά και σταθερά — με σειρά.</h2>
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px; margin-top: 72px;">
+      <div style="background: #161B24; border: 1px solid #2A3442; border-radius: 12px; padding: 40px 32px; display: flex; flex-direction: column; gap: 24px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; color: #4D9FFF;">1</span>
+        <p style="font-size: 28px; font-weight: 400; line-height: 1.4; margin: 0;">Δοκιμή σε λίγους έμπιστους</p>
+      </div>
+      <div style="background: #161B24; border: 1px solid #2A3442; border-radius: 12px; padding: 40px 32px; display: flex; flex-direction: column; gap: 24px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; color: #4D9FFF;">2</span>
+        <p style="font-size: 28px; font-weight: 400; line-height: 1.4; margin: 0;">Εμπιστοσύνη πρώτα, μετά πώληση</p>
+      </div>
+      <div style="background: #161B24; border: 1px solid #2A3442; border-radius: 12px; padding: 40px 32px; display: flex; flex-direction: column; gap: 24px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; color: #4D9FFF;">3</span>
+        <p style="font-size: 28px; font-weight: 400; line-height: 1.4; margin: 0;">Στηριζόμαστε στη 4IP</p>
+      </div>
+      <div style="background: #161B24; border: 1px solid #2A3442; border-radius: 12px; padding: 40px 32px; display: flex; flex-direction: column; gap: 24px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; color: #4D9FFF;">4</span>
+        <p style="font-size: 28px; font-weight: 400; line-height: 1.4; margin: 0;">Οι συνεργάτες φέρνουν πελάτες</p>
+      </div>
+      <div style="background: #161B24; border: 1px solid #2A3442; border-radius: 12px; padding: 40px 32px; display: flex; flex-direction: column; gap: 24px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; color: #4D9FFF;">5</span>
+        <p style="font-size: 28px; font-weight: 400; line-height: 1.4; margin: 0;">Βήμα-βήμα, όχι όλα μαζί</p>
+      </div>
+    </div>
+    <div style="position: absolute; bottom: 40px; right: 120px; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.18em; color: #8B94A3;">08/17</div>
+  </section>
+
+  <!-- 9 — ΓΙΑΤΙ ΕΤΣΙ -->
+  <section data-label="Γιατί έτσι" data-speaker-notes="Κλειστό ξεκίνημα: πρώτα λίγοι, μετά δημόσια — δοκιμασμένοι." style="background: #0A0C10; color: #F2F4F7; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; justify-content: center; padding: 100px 120px 90px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="width: 28px; height: 2px; background: #4D9FFF;"></div>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.28em; color: #8B94A3;">ΠΩΣ ΒΓΑΙΝΕΙ</span>
+    </div>
+    <h2 style="font-size: 84px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; margin: 48px 0 0; max-width: 1400px;">Ξεκινάμε κλειστά, όχι με φανφάρες.</h2>
+    <p style="font-size: 36px; font-weight: 300; color: #C7CDD6; line-height: 1.55; margin: 48px 0 0; max-width: 1350px; text-wrap: pretty;">Πρώτα το δείχνουμε σε λίγους δικηγόρους και ανθρώπους της ασφάλειας, μαζεύουμε γνώμες και τους πρώτους που θα το συστήνουν — και μετά βγαίνουμε δημόσια, δοκιμασμένοι.</p>
+    <div style="position: absolute; bottom: 40px; right: 120px; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.18em; color: #8B94A3;">09/17</div>
+  </section>
+
+  <!-- 10 — Η ΛΟΓΙΚΗ ΤΗΣ ΤΙΜΗΣ -->
+  <section data-label="Η λογική της τιμής" data-speaker-notes="Η τιμολόγηση: μία φορά ανά έλεγχο, σαν τσεκ-απ. Πολύ φθηνή τιμή υπονομεύει την εμπιστοσύνη." style="background: #0F1218; color: #F2F4F7; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; justify-content: center; padding: 100px 120px 90px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="width: 28px; height: 2px; background: #4D9FFF;"></div>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.28em; color: #8B94A3;">ΠΟΣΟ ΚΟΣΤΙΖΕΙ</span>
+    </div>
+    <h2 style="font-size: 92px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.12; margin: 48px 0 0;">Σαν τσεκ-απ για το κινητό.</h2>
+    <p style="font-size: 36px; font-weight: 300; color: #C7CDD6; line-height: 1.55; margin: 48px 0 0; max-width: 1300px; text-wrap: pretty;">Πληρώνει μία φορά ανά έλεγχο. Η τιμή αλλάζει ανάλογα με το ποιος είναι ο πελάτης και πόσο βαθύ έλεγχο θέλει.</p>
+    <p style="font-size: 26px; font-weight: 300; color: #8B94A3; margin: 64px 0 0;">Προσοχή: πολύ φθηνή τιμή = χάνεις την εμπιστοσύνη.</p>
+    <div style="position: absolute; bottom: 40px; right: 120px; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.18em; color: #8B94A3;">10/17</div>
+  </section>
+
+  <!-- 11 — ΤΑ ΠΑΚΕΤΑ -->
+  <section data-label="Τα πακέτα" data-speaker-notes="Τέσσερα σκαλάκια τιμής. Δημόσια μόνο το «από €90» — τα υπόλοιπα κατόπιν συνεννόησης." style="background: #0A0C10; color: #F2F4F7; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; padding: 100px 120px 90px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="width: 28px; height: 2px; background: #4D9FFF;"></div>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.28em; color: #8B94A3;">ΠΟΣΟ ΚΟΣΤΙΖΕΙ</span>
+    </div>
+    <h2 style="font-size: 76px; font-weight: 600; letter-spacing: -0.02em; margin: 44px 0 0;">Σκαλάκια, για κάθε ανάγκη.</h2>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 64px;">
+      <div style="background: #161B24; border: 1px solid #2A3442; border-radius: 12px; padding: 44px 36px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.18em; color: #8B94A3;">ΒΑΣΙΚΟ</div>
+        <div style="font-size: 52px; font-weight: 600; letter-spacing: -0.01em;">€90–150</div>
+        <p style="font-size: 26px; font-weight: 300; color: #C7CDD6; line-height: 1.45; margin: 0;">Αυτόματο — μια πρώτη εικόνα, χωρίς προσωπική ανάλυση.</p>
+      </div>
+      <div style="background: #161B24; border: 1px solid #4D9FFF; border-radius: 12px; padding: 44px 36px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.18em; color: #4D9FFF;">ΠΛΗΡΕΣ</div>
+        <div style="font-size: 52px; font-weight: 600; letter-spacing: -0.01em;">€390+</div>
+        <p style="font-size: 26px; font-weight: 300; color: #C7CDD6; line-height: 1.45; margin: 0;">Με ανθρώπινη αξιολόγηση 4IP και καθοδήγηση.</p>
+      </div>
+      <div style="background: #161B24; border: 1px solid #2A3442; border-radius: 12px; padding: 44px 36px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.18em; color: #8B94A3;">ΣΤΕΛΕΧΟΣ</div>
+        <div style="font-size: 52px; font-weight: 600; letter-spacing: -0.01em;">€900–1.200</div>
+        <p style="font-size: 26px; font-weight: 300; color: #C7CDD6; line-height: 1.45; margin: 0;">Πιο γρήγορα, πιο διακριτικά.</p>
+      </div>
+      <div style="background: #161B24; border: 1px solid #2A3442; border-radius: 12px; padding: 44px 36px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.18em; color: #8B94A3;">ΕΤΑΙΡΕΙΑ</div>
+        <div style="font-size: 52px; font-weight: 600; letter-spacing: -0.01em;">€300–800</div>
+        <p style="font-size: 26px; font-weight: 300; color: #C7CDD6; line-height: 1.45; margin: 0;">Ανά κινητό — ή πακέτο €3.000+.</p>
+      </div>
+    </div>
+    <p style="font-size: 26px; font-weight: 300; color: #8B94A3; margin: 52px 0 0;">Στο site: «από €90». Τα υπόλοιπα κατόπιν συνεννόησης.</p>
+    <div style="position: absolute; bottom: 40px; right: 120px; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.18em; color: #8B94A3;">11/17</div>
+  </section>
+
+  <!-- 12 — Η ΠΡΟΩΘΗΣΗ -->
+  <section data-label="Η προώθηση" data-speaker-notes="Φιλοσοφία προώθησης: εκπαίδευση αντί για θόρυβο. Κοστίζει χρόνο, όχι χρήματα." style="background: #0F1218; color: #F2F4F7; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; justify-content: center; padding: 100px 120px 90px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="width: 28px; height: 2px; background: #4D9FFF;"></div>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.28em; color: #8B94A3;">ΠΩΣ ΓΙΝΕΤΑΙ ΓΝΩΣΤΟ</span>
+    </div>
+    <h2 style="font-size: 92px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.12; margin: 48px 0 0; max-width: 1500px;">Σοβαρά και φθηνά — όχι με φόβο.</h2>
+    <p style="font-size: 36px; font-weight: 300; color: #C7CDD6; line-height: 1.55; margin: 48px 0 0; max-width: 1250px; text-wrap: pretty;">Χτίζουμε εμπιστοσύνη με εκπαίδευση, όχι θόρυβο. Τα περισσότερα κοστίζουν χρόνο, όχι χρήματα.</p>
+    <div style="position: absolute; bottom: 40px; right: 120px; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.18em; color: #8B94A3;">12/17</div>
+  </section>
+
+  <!-- 13 — ΟΙ 6 ΚΙΝΗΣΕΙΣ -->
+  <section data-label="Οι 6 κινήσεις" data-speaker-notes="Έξι συγκεκριμένες κινήσεις προώθησης — όλες χαμηλού κόστους." style="background: #0A0C10; color: #F2F4F7; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; padding: 100px 120px 90px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="width: 28px; height: 2px; background: #4D9FFF;"></div>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.28em; color: #8B94A3;">ΠΩΣ ΓΙΝΕΤΑΙ ΓΝΩΣΤΟ</span>
+    </div>
+    <h2 style="font-size: 76px; font-weight: 600; letter-spacing: -0.02em; margin: 44px 0 0;">Έξι κινήσεις που δουλεύουν.</h2>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 64px;">
+      <div style="background: #161B24; border: 1px solid #2A3442; border-radius: 12px; padding: 44px 40px; display: flex; align-items: baseline; gap: 28px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; color: #4D9FFF;">01</span>
+        <p style="font-size: 32px; font-weight: 400; margin: 0;">Κλειστό ξεκίνημα</p>
+      </div>
+      <div style="background: #161B24; border: 1px solid #2A3442; border-radius: 12px; padding: 44px 40px; display: flex; align-items: baseline; gap: 28px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; color: #4D9FFF;">02</span>
+        <p style="font-size: 32px; font-weight: 400; margin: 0;">Δείγμα έκθεσης</p>
+      </div>
+      <div style="background: #161B24; border: 1px solid #2A3442; border-radius: 12px; padding: 44px 40px; display: flex; align-items: baseline; gap: 28px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; color: #4D9FFF;">03</span>
+        <p style="font-size: 32px; font-weight: 400; margin: 0;">Μηνιαίο ενημερωτικό δελτίο</p>
+      </div>
+      <div style="background: #161B24; border: 1px solid #2A3442; border-radius: 12px; padding: 44px 40px; display: flex; align-items: baseline; gap: 28px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; color: #4D9FFF;">04</span>
+        <p style="font-size: 32px; font-weight: 400; margin: 0;">Ερωτηματολόγιο κινδύνου στο site</p>
+      </div>
+      <div style="background: #161B24; border: 1px solid #2A3442; border-radius: 12px; padding: 44px 40px; display: flex; align-items: baseline; gap: 28px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; color: #4D9FFF;">05</span>
+        <p style="font-size: 32px; font-weight: 400; margin: 0;">Πακέτο για συνεργάτες</p>
+      </div>
+      <div style="background: #161B24; border: 1px solid #2A3442; border-radius: 12px; padding: 44px 40px; display: flex; align-items: baseline; gap: 28px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; color: #4D9FFF;">06</span>
+        <p style="font-size: 32px; font-weight: 400; margin: 0;">Ένα-δύο webinars</p>
+      </div>
+    </div>
+    <div style="position: absolute; bottom: 40px; right: 120px; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.18em; color: #8B94A3;">13/17</div>
+  </section>
+
+  <!-- 14 — ΣΥΝΕΡΓΑΤΕΣ & 4IP -->
+  <section data-label="Συνεργάτες & 4IP" data-speaker-notes="Δικηγόροι και σύμβουλοι ασφάλειας φέρνουν πελάτες· η 4IP δίνει το όνομα." style="background: #0A0C10; color: #F2F4F7; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; padding: 100px 120px 90px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="width: 28px; height: 2px; background: #4D9FFF;"></div>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.28em; color: #8B94A3;">ΠΩΣ ΓΙΝΕΤΑΙ ΓΝΩΣΤΟ</span>
+    </div>
+    <h2 style="font-size: 76px; font-weight: 600; letter-spacing: -0.02em; margin: 44px 0 0;">Άλλοι σας φέρνουν πελάτες.</h2>
+    <div style="display: flex; flex-direction: column; margin-top: 64px; border-top: 1px solid #2A3442;">
+      <div style="display: flex; align-items: baseline; gap: 48px; padding: 48px 8px; border-bottom: 1px solid #2A3442;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; color: #4D9FFF;">01</span>
+        <p style="font-size: 34px; font-weight: 300; line-height: 1.5; margin: 0; max-width: 1350px;">Δικηγόροι &amp; σύμβουλοι ασφάλειας έχουν ήδη πελάτες που ρωτάνε «μήπως με παρακολουθούν;» — δώσ' τους εργαλεία και αμοιβή.</p>
+      </div>
+      <div style="display: flex; align-items: baseline; gap: 48px; padding: 48px 8px; border-bottom: 1px solid #2A3442;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; color: #4D9FFF;">02</span>
+        <p style="font-size: 34px; font-weight: 300; line-height: 1.5; margin: 0; max-width: 1350px;">Όλα μαζί με τη 4IP — δίνει το όνομα και την εμπιστοσύνη.</p>
+      </div>
+    </div>
+    <div style="position: absolute; bottom: 40px; right: 120px; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.18em; color: #8B94A3;">14/17</div>
+  </section>
+
+  <!-- 15 — ΕΝΑ ΕΞΥΠΝΟ ΚΟΛΠΟ -->
+  <section data-label="Bonus" data-speaker-notes="Η προώθηση παράγει τις αποδείξεις που ζητούν οι αιτήσεις χρηματοδότησης — μία δουλειά, δύο οφέλη." style="background: #0A0C10; color: #F2F4F7; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; justify-content: center; padding: 100px 120px 90px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="width: 28px; height: 2px; background: #3DD68C;"></div>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.28em; color: #8B94A3;">BONUS</span>
+    </div>
+    <h2 style="font-size: 84px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; margin: 48px 0 0; max-width: 1450px;">Η προώθηση βοηθάει και τις επιδοτήσεις.</h2>
+    <p style="font-size: 36px; font-weight: 300; color: #C7CDD6; line-height: 1.55; margin: 48px 0 0; max-width: 1350px; text-wrap: pretty;">Οι πρώτοι πελάτες, οι μαρτυρίες και οι συνεργάτες είναι ακριβώς οι αποδείξεις που ζητάει μια αίτηση χρηματοδότησης. Μία δουλειά, δύο οφέλη.</p>
+    <div style="position: absolute; bottom: 40px; right: 120px; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.18em; color: #8B94A3;">15/17</div>
+  </section>
+
+  <!-- 16 — ΟΙ ΠΡΩΤΟΙ 3 ΜΗΝΕΣ -->
+  <section data-label="Πλάνο" data-speaker-notes="Το πλάνο τριών μηνών: ετοιμασία, μικρό λανσάρισμα, χτίσιμο κύρους." style="background: #0F1218; color: #F2F4F7; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; padding: 100px 120px 90px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="width: 28px; height: 2px; background: #4D9FFF;"></div>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.28em; color: #8B94A3;">ΠΛΑΝΟ</span>
+    </div>
+    <h2 style="font-size: 76px; font-weight: 600; letter-spacing: -0.02em; margin: 44px 0 0;">Οι πρώτοι τρεις μήνες.</h2>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 72px;">
+      <div style="background: #161B24; border: 1px solid #2A3442; border-radius: 12px; padding: 52px 44px; display: flex; flex-direction: column; gap: 28px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.2em; color: #4D9FFF;">ΜΗΝΑΣ 1</div>
+        <p style="font-size: 32px; font-weight: 400; line-height: 1.45; margin: 0;">Ετοιμασία &amp; δοκιμή σε ~10 έμπιστους.</p>
+        <div style="display: flex; flex-direction: column; gap: 14px; border-top: 1px solid #2A3442; padding-top: 24px;">
+          <p style="font-size: 25px; font-weight: 300; color: #8B94A3; line-height: 1.4; margin: 0;">— Δωρεάν έλεγχος σε δικηγόρους &amp; γνωστούς της 4IP</p>
+          <p style="font-size: 25px; font-weight: 300; color: #8B94A3; line-height: 1.4; margin: 0;">— Έτοιμο δείγμα έκθεσης &amp; απλή σελίδα στο site</p>
+        </div>
+      </div>
+      <div style="background: #161B24; border: 1px solid #2A3442; border-radius: 12px; padding: 52px 44px; display: flex; flex-direction: column; gap: 28px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.2em; color: #4D9FFF;">ΜΗΝΑΣ 2</div>
+        <p style="font-size: 32px; font-weight: 400; line-height: 1.45; margin: 0;">Μικρό λανσάρισμα, πρώτοι πελάτες, webinar.</p>
+        <div style="display: flex; flex-direction: column; gap: 14px; border-top: 1px solid #2A3442; padding-top: 24px;">
+          <p style="font-size: 25px; font-weight: 300; color: #8B94A3; line-height: 1.4; margin: 0;">— Πρώτο ενημερωτικό δελτίο &amp; ερωτηματολόγιο κινδύνου</p>
+          <p style="font-size: 25px; font-weight: 300; color: #8B94A3; line-height: 1.4; margin: 0;">— Ένα webinar για δικηγόρους &amp; συμβούλους</p>
+        </div>
+      </div>
+      <div style="background: #161B24; border: 1px solid #2A3442; border-radius: 12px; padding: 52px 44px; display: flex; flex-direction: column; gap: 28px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.2em; color: #4D9FFF;">ΜΗΝΑΣ 3</div>
+        <p style="font-size: 32px; font-weight: 400; line-height: 1.45; margin: 0;">Χτίσιμο κύρους &amp; πρώτη αίτηση επιδότησης.</p>
+        <div style="display: flex; flex-direction: column; gap: 14px; border-top: 1px solid #2A3442; padding-top: 24px;">
+          <p style="font-size: 25px; font-weight: 300; color: #8B94A3; line-height: 1.4; margin: 0;">— Μαρτυρίες πρώτων πελατών &amp; πακέτο συνεργατών</p>
+          <p style="font-size: 25px; font-weight: 300; color: #8B94A3; line-height: 1.4; margin: 0;">— Κατάθεση φακέλου με τις πρώτες αποδείξεις</p>
+        </div>
+      </div>
+    </div>
+    <div style="position: absolute; bottom: 40px; right: 120px; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.18em; color: #8B94A3;">16/17</div>
+  </section>
+
+  <!-- 17 — ΚΛΕΙΣΙΜΟ -->
+  <section data-label="Κλείσιμο" data-speaker-notes="Κλείσιμο: σιγά, σταθερά, με την εμπιστοσύνη μπροστά." style="background: linear-gradient(180deg, #0A0C10 0%, #0F1218 100%); color: #F2F4F7; font-family: 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 120px 90px; box-sizing: border-box;">
+    <div style="display: flex; align-items: center; gap: 20px;">
+      <div style="width: 32px; height: 2px; background: #4D9FFF;"></div>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.28em; color: #8B94A3;">ΕΠΟΜΕΝΟ ΒΗΜΑ</span>
+      <div style="width: 32px; height: 2px; background: #4D9FFF;"></div>
+    </div>
+    <h2 style="font-size: 100px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.12; margin: 56px 0 0; max-width: 1550px;">Σιγά, σταθερά, με εμπιστοσύνη μπροστά.</h2>
+    <p style="font-size: 34px; font-weight: 300; color: #C7CDD6; margin: 52px 0 0;">Αρκετά σοβαρό για επιχειρήσεις, αρκετά ανθρώπινο για τον απλό κόσμο.</p>
+    <p style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; letter-spacing: 0.22em; color: #8B94A3; margin: 80px 0 0;">4IP × GRYPAS-AI</p>
+    <div style="position: absolute; bottom: 40px; right: 120px; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.18em; color: #8B94A3;">17/17</div>
+  </section>
+
+</x-import>
+<sc-if value="{{ showFsButton }}" hint-placeholder-val="{{ false }}">
+  <button onClick="{{ toggleFullscreen }}" aria-label="Πλήρης οθόνη" style="position: fixed; bottom: 18px; left: 18px; z-index: 60; width: 52px; height: 52px; border-radius: 10px; background: rgba(22,27,36,0.85); border: 1px solid #2A3442; color: #C7CDD6; font-size: 22px; display: flex; align-items: center; justify-content: center; cursor: pointer; -webkit-tap-highlight-color: transparent;">{{ fsIcon }}</button>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { isFs: false, isTouch: false };
+
+  componentDidMount() {
+    const isTouch = window.matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window;
+    this.setState({ isTouch });
+    this._onFsChange = () => {
+      const fs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+      this.setState({ isFs: fs });
+    };
+    document.addEventListener('fullscreenchange', this._onFsChange);
+    document.addEventListener('webkitfullscreenchange', this._onFsChange);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('fullscreenchange', this._onFsChange);
+    document.removeEventListener('webkitfullscreenchange', this._onFsChange);
+  }
+
+  renderVals() {
+    return {
+      showFsButton: this.state.isTouch,
+      fsIcon: this.state.isFs ? '✕' : '⛶',
+      toggleFullscreen: () => {
+        const el = document.documentElement;
+        if (document.fullscreenElement || document.webkitFullscreenElement) {
+          (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+        } else if (el.requestFullscreen) {
+          el.requestFullscreen();
+        } else if (el.webkitRequestFullscreen) {
+          el.webkitRequestFullscreen();
+        }
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>
