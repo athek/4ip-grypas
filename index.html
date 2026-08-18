@@ -10,12 +10,13 @@
 <helmet>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
   <style>
     html{scroll-behavior:smooth}
     body{margin:0;background:#0A0C10;color:#C7CDD6;font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
     ::selection{background:rgba(77,159,255,.25)}
     a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #4D9FFF;outline-offset:2px}
+    section[id],div[id]{scroll-margin-top:112px}
     @keyframes pulse4ip{0%,100%{opacity:.45}50%{opacity:1}}
     @media (max-width: 720px){
       #nav4ip{height:56px !important}
@@ -29,27 +30,42 @@
       #grypas > div{gap:40px !important}
       #contact form button[type="submit"]{width:100%}
     }
+    html:not(.intro-unlocked){overflow:hidden}
     @media (prefers-reduced-motion: reduce){
+      html{overflow:visible !important}
+      #introOverlay{display:none !important}
       html{scroll-behavior:auto}
       *{animation:none !important;transition:none !important}
     }
   </style>
 </helmet>
 
+<div id="introOverlay" style="display:block;position:fixed;inset:0;z-index:4000;background-color:#0A0C10;background-image:url('4iP-Intro-poster.png');background-position:center;background-size:cover;background-repeat:no-repeat;display:flex;align-items:center;justify-content:center;opacity:1;pointer-events:auto;transition:opacity 600ms cubic-bezier(0.22,1,0.36,1)" role="{{ overlayRole }}" aria-modal="{{ overlayModal }}" aria-label="4iP — Εισαγωγή">
+  <div id="introSplash" aria-hidden="true" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;background:#0A0C10;transition:opacity 500ms cubic-bezier(0.22,1,0.36,1)">
+    <img src="4iP-logo.svg" alt="" style="width:min(38vw,320px);height:auto;display:block">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.22em;color:#5A6472">INTELLIGENCE · RISK · INVESTIGATIONS</span>
+  </div>
+  <iframe id="introFrame" title="4iP — Εισαγωγή" allow="autoplay" loading="eager" style="position:relative;z-index:1;width:100%;height:100%;border:0;display:block;background:transparent"></iframe>
+  <button id="introClose" onClick="{{ closeOverlay }}" aria-label="Κλείσιμο" style="display:{{ closeDisplay }};position:absolute;top:clamp(16px,3vw,28px);right:clamp(16px,3vw,28px);z-index:10;width:40px;height:40px;align-items:center;justify-content:center;background:rgba(10,12,16,0.6);border:1px solid #2A3442;border-radius:50%;color:#C7CDD6;font-size:15px;cursor:pointer;transition:color 200ms cubic-bezier(0.22,1,0.36,1),border-color 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:#F2F4F7;border-color:#8B94A3">✕</button>
+</div>
+
 <div style="display:{{ dotGridDisplay }};position:fixed;inset:0;pointer-events:none;opacity:0.035;background-image:radial-gradient(circle,#ffffff 1px,transparent 1px);background-size:28px 28px;z-index:1" aria-hidden="true"></div>
 
-<header style="position:sticky;top:0;z-index:60">
+<header id="hdr4ip" style="position:fixed;top:0;left:0;right:0;z-index:1000">
   <nav id="nav4ip" aria-label="Κύρια πλοήγηση" style="display:flex;align-items:center;justify-content:space-between;gap:24px;height:64px;padding:0 clamp(24px,5vw,48px);border-bottom:1px solid #2A3442;background:rgba(10,12,16,0.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:height 250ms cubic-bezier(0.22,1,0.36,1)">
     <a href="#top" style="display:flex;align-items:center;text-decoration:none;flex:1 1 0;min-width:0">
       <img src="uploads/logo2-transparent.png" alt="4IP Εταιρεία Προστασίας Συμφερόντων" style="height:40px;width:auto;display:block">
     </a>
     <div style="display:{{ navLinksDisplay }};gap:32px;font-size:14px;align-items:center;white-space:nowrap;justify-content:center">
       <a href="#capabilities" style="color:#C7CDD6;text-decoration:none;transition:color 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:#F2F4F7">Υπηρεσίες</a>
-      <a href="#grypas" style="color:#C7CDD6;text-decoration:none;transition:color 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:#F2F4F7">GRYPAS-AI</a>
+      <a href="#grypas-teaser" style="color:#C7CDD6;text-decoration:none;transition:color 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:#F2F4F7">GRYPAS-AI</a>
       <a href="#methodology" style="color:#C7CDD6;text-decoration:none;transition:color 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:#F2F4F7">Μεθοδολογία</a>
       <a href="#industries" style="color:#C7CDD6;text-decoration:none;transition:color 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:#F2F4F7">Κλάδοι</a>
     </div>
-    <div style="display:flex;justify-content:flex-end;flex:1 1 0;min-width:0">
+    <div style="display:flex;justify-content:flex-end;align-items:center;gap:12px;flex:1 1 0;min-width:0">
+      <button id="introReplay" onClick="{{ openReplay }}" aria-label="Προβολή εισαγωγής" title="Εισαγωγή" style="display:flex;flex:none;width:34px;height:34px;align-items:center;justify-content:center;background:none;border:1px solid #2A3442;border-radius:50%;color:#8B94A3;cursor:pointer;transition:color 200ms cubic-bezier(0.22,1,0.36,1),border-color 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:#E5A83B;border-color:#E5A83B">
+        <svg width="11" height="12" viewBox="0 0 11 12" fill="currentColor" aria-hidden="true" style="display:block;margin-left:1px"><path d="M0 0.7 L10 6 L0 11.3 Z"></path></svg>
+      </button>
       <a href="#contact" style="display:{{ navLinksDisplay }};font-size:13px;font-weight:600;color:#F2F4F7;text-decoration:none;border:1px solid #1E6FD9;padding:9px 18px;border-radius:4px;white-space:nowrap;transition:background 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="background:rgba(30,111,217,0.15)">Εμπιστευτική συμβουλευτική</a>
       <button onClick="{{ openMenu }}" aria-label="Άνοιγμα μενού" style="display:{{ burgerDisplay }};flex-direction:column;gap:5px;background:none;border:1px solid #2A3442;border-radius:4px;padding:12px 11px;cursor:pointer">
         <span style="display:block;width:18px;height:1.5px;background:#C7CDD6"></span>
@@ -73,11 +89,14 @@
 <div style="display:{{ menuDisplay }};position:fixed;inset:0;z-index:70;background:rgba(10,12,16,0.98);flex-direction:column;padding:24px;overflow-y:auto" role="dialog" aria-label="Μενού πλοήγησης">
   <div style="display:flex;justify-content:space-between;align-items:center">
     <img src="uploads/logo2-transparent.png" alt="4IP Εταιρεία Προστασίας Συμφερόντων" style="height:38px;width:auto;display:block">
+    <button onClick="{{ openReplay }}" aria-label="Προβολή εισαγωγής" title="Εισαγωγή" style="margin-left:auto;margin-right:10px;display:flex;flex:none;width:34px;height:34px;align-items:center;justify-content:center;background:none;border:1px solid #2A3442;border-radius:50%;color:#8B94A3;cursor:pointer">
+      <svg width="11" height="12" viewBox="0 0 11 12" fill="currentColor" aria-hidden="true" style="display:block;margin-left:1px"><path d="M0 0.7 L10 6 L0 11.3 Z"></path></svg>
+    </button>
     <button onClick="{{ closeMenu }}" aria-label="Κλείσιμο μενού" style="background:none;border:1px solid #2A3442;border-radius:4px;color:#C7CDD6;font-size:16px;padding:8px 14px;cursor:pointer">✕</button>
   </div>
   <div style="display:flex;flex-direction:column;gap:28px;margin-top:64px;font-family:'IBM Plex Sans',sans-serif;font-size:24px">
     <a href="#capabilities" onClick="{{ closeMenu }}" style="color:#F2F4F7;text-decoration:none">Υπηρεσίες</a>
-    <a href="#grypas" onClick="{{ closeMenu }}" style="color:#F2F4F7;text-decoration:none">GRYPAS-AI</a>
+    <a href="#grypas-teaser" onClick="{{ closeMenu }}" style="color:#F2F4F7;text-decoration:none">GRYPAS-AI</a>
     <a href="#methodology" onClick="{{ closeMenu }}" style="color:#F2F4F7;text-decoration:none">Μεθοδολογία</a>
     <a href="#industries" onClick="{{ closeMenu }}" style="color:#F2F4F7;text-decoration:none">Κλάδοι</a>
     <a href="#difference" onClick="{{ closeMenu }}" style="color:#8B94A3;text-decoration:none;font-size:18px">Εταιρεία</a>
@@ -93,7 +112,7 @@
   </div>
 </div>
 
-<main style="position:relative;z-index:2">
+<main style="position:relative;z-index:2;padding-top:102px">
 
 <!-- 1 · HERO -->
 <section id="top" data-screen-label="01 Hero" style="background:#0A0C10">
@@ -101,7 +120,7 @@
     <div style="flex:1.1 1 460px;min-width:0">
       <p data-reveal="0" style="margin:0 0 26px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.22em;color:#D98A2E;text-transform:uppercase">INTELLIGENCE-LED SECURITY · INVESTIGATIONS · CYBER FORENSICS</p>
       <h1 data-reveal="60" style="margin:0;font-family:'IBM Plex Sans',sans-serif;font-size:clamp(34px,4.6vw,62px);font-weight:600;line-height:1.08;letter-spacing:-0.015em;color:#F2F4F7;max-width:14ch;text-wrap:balance">Intelligence-led προστασία για ανθρώπους, πληροφορίες και συμφέροντα.</h1>
-      <p data-reveal="150" style="margin:26px 0 0;font-size:18px;color:#C7CDD6;max-width:52ch">Επιχειρησιακή εμπειρία από το πεδίο. Τεχνικά αντίμετρα. Ψηφιακή εγκληματολογία. Μία μεθοδολογία — τεκμηριωμένα αποτελέσματα, για την Ελλάδα και τη ΝΑ Ευρώπη.</p>
+      <p data-reveal="150" style="margin:26px 0 0;font-size:18px;color:#C7CDD6;max-width:52ch">Επιχειρησιακή εμπειρία από το πεδίο. Τεχνικά αντίμετρα. Ψηφιακή εγκληματολογία. Μία μεθοδολογία — τεκμηριωμένα αποτελέσματα, με έδρα την Ελλάδα, ενεργά σε Ελλάδα και διεθνώς.</p>
       <p data-reveal="210" style="margin:14px 0 0;font-size:13px;color:#8B94A3;font-style:italic">Security is not a product, but a process.</p>
       <div data-reveal="270" style="margin-top:40px;display:flex;gap:16px;flex-wrap:wrap">
         <a href="#contact" style="background:#1E6FD9;color:#F2F4F7;font-weight:600;font-size:15px;padding:14px 26px;border-radius:4px;text-decoration:none;transition:background 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="background:#2A7CE6">Εμπιστευτική συμβουλευτική</a>
@@ -109,7 +128,7 @@
       </div>
       <div data-reveal="330" style="margin-top:22px;display:flex;gap:8px;align-items:center;font-size:12.5px;color:#8B94A3">
         <span style="width:6px;height:6px;border-radius:50%;background:#3DD68C;flex:none" aria-hidden="true"></span>
-        Απάντηση από έμπειρο στέλεχος εντός 24 ωρών · Δεν χρειαζόμαστε λεπτομέρειες στην πρώτη επαφή
+        Απάντηση από έμπειρο στέλεχος εντός 24 ωρών · Στην πρώτη επαφή δεν χρειάζεται να αποκαλύψετε ευαίσθητα στοιχεία. Ακούμε το πλαίσιο, ορίζουμε επίπεδο εμπιστευτικότητας και ασφαλές κανάλι, και συλλέγουμε μόνο ό,τι απαιτεί η υπόθεση.
       </div>
     </div>
     <div style="flex:0.9 1 320px;max-width:520px;position:relative" role="img" aria-label="Αφαιρετική απεικόνιση επιχειρησιακής εμβέλειας: Αθήνα και Νοτιοανατολική Ευρώπη">
@@ -133,7 +152,7 @@
         <text x="262" y="296" fill="#C7CDD6" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1">ATH</text>
         <text x="334" y="157" fill="#8B94A3" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1">SE-EU</text>
       </svg>
-      <p style="margin:6px 0 0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#8B94A3">OPERATIONAL REACH · GREECE / SE EUROPE</p>
+      <p style="margin:6px 0 0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#8B94A3">OPERATIONAL REACH · GREECE &amp; INTERNATIONAL</p>
     </div>
   </div>
 </section>
@@ -143,8 +162,8 @@
   <div style="max-width:1320px;margin:0 auto;padding:0 clamp(24px,5vw,48px)">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:#2A3442;border-left:1px solid #2A3442;border-right:1px solid #2A3442">
       <div data-reveal="0" style="background:#0A0C10;padding:30px 26px;display:flex;flex-direction:column;gap:7px">
-        <span style="font-size:15px;font-weight:600;color:#F2F4F7;font-family:'IBM Plex Sans',sans-serif">Πρώην αξιωματικοί ΕΛ.ΑΣ.</span>
-        <span style="font-size:13px;color:#8B94A3">Επιχειρησιακό υπόβαθρο, όχι θεωρία</span>
+        <span style="font-size:15px;font-weight:600;color:#F2F4F7;font-family:'IBM Plex Sans',sans-serif">Θεσμικό υπόβαθρο</span>
+        <span style="font-size:13px;color:#8B94A3">Εμπειρία δημόσιας ασφάλειας &amp; επιβολής του νόμου</span>
       </div>
       <div data-reveal="70" style="background:#0A0C10;padding:30px 26px;display:flex;flex-direction:column;gap:7px">
         <span style="font-size:15px;font-weight:600;color:#F2F4F7;font-family:'IBM Plex Sans',sans-serif">Τεκμηριωμένη μεθοδολογία</span>
@@ -153,10 +172,6 @@
       <div data-reveal="140" style="background:#0A0C10;padding:30px 26px;display:flex;flex-direction:column;gap:7px">
         <span style="font-size:15px;font-weight:600;color:#F2F4F7;font-family:'IBM Plex Sans',sans-serif">Απόλυτη εχεμύθεια</span>
         <span style="font-size:13px;color:#8B94A3">Δήλωση σε κάθε σημείο επαφής</span>
-      </div>
-      <div data-reveal="210" style="background:#0A0C10;padding:30px 26px;display:flex;flex-direction:column;gap:7px">
-        <span style="font-size:15px;font-weight:600;color:#F2F4F7;font-family:'IBM Plex Sans',sans-serif">Το site δεν σας παρακολουθεί</span>
-        <span style="font-size:13px;color:#8B94A3">Μηδενικοί ιχνηλάτες τρίτων</span>
       </div>
     </div>
   </div>
@@ -167,6 +182,7 @@
   <div style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) clamp(24px,5vw,48px)">
     <p data-reveal="0" style="margin:0 0 18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#D98A2E;text-transform:uppercase">ΤΟ ΠΕΡΙΒΑΛΛΟΝ</p>
     <h2 data-reveal="60" style="margin:0 0 20px;font-family:'IBM Plex Sans',sans-serif;font-size:clamp(28px,3.2vw,40px);font-weight:600;line-height:1.15;letter-spacing:-0.015em;color:#F2F4F7;max-width:24ch;text-wrap:balance">Οι απειλές δεν χωρίζονται πια σε φυσικές και ψηφιακές.</h2>
+    <p data-reveal="120" style="margin:0;font-size:16px;color:#C7CDD6;max-width:68ch">Κάθε πελάτης έχει διαφορετικό περιβάλλον απειλών — ψηφιακό, φυσικό, φήμης και εταιρικό. Το χαρτογραφούμε πριν προτείνουμε οτιδήποτε.</p>
     <svg viewBox="0 0 1224 32" preserveAspectRatio="none" style="width:100%;height:32px;display:block;margin:24px 0 0" aria-hidden="true">
       <path id="tl1" d="M2 16 H1222 M153 16 V30 M459 16 V30 M765 16 V30 M1071 16 V30" stroke="#2A3442" stroke-width="1" fill="none"></path>
     </svg>
@@ -177,15 +193,71 @@
       </div>
       <div data-reveal="80" style="background:#161B24;padding:28px 26px">
         <h3 style="margin:0 0 10px;font-family:'IBM Plex Sans',sans-serif;font-size:16px;font-weight:600;color:#F2F4F7">Φυσικές</h3>
-        <p style="margin:0;font-size:13.5px;color:#8B94A3;line-height:1.65">Η πρόσβαση σε πρόσωπα, χώρους και εγκαταστάσεις παραμένει το πρώτο σημείο κάθε σχεδιασμού ασφάλειας.</p>
+        <p style="margin:0;font-size:13.5px;color:#8B94A3;line-height:1.65">Η μη εξουσιοδοτημένη πρόσβαση σε πρόσωπα, χώρους και εγκαταστάσεις παραμένει το πρώτο σημείο κάθε σχεδιασμού ασφάλειας.</p>
       </div>
       <div data-reveal="160" style="background:#161B24;padding:28px 26px">
         <h3 style="margin:0 0 10px;font-family:'IBM Plex Sans',sans-serif;font-size:16px;font-weight:600;color:#F2F4F7">Φήμης</h3>
         <p style="margin:0;font-size:13.5px;color:#8B94A3;line-height:1.65">Στοχευμένη παραπληροφόρηση και διαρροές επηρεάζουν αποτίμηση, διαπραγματεύσεις και σχέσεις εμπιστοσύνης.</p>
       </div>
       <div data-reveal="240" style="background:#161B24;padding:28px 26px">
-        <h3 style="margin:0 0 10px;font-family:'IBM Plex Sans',sans-serif;font-size:16px;font-weight:600;color:#F2F4F7">Επιχειρησιακές</h3>
+        <h3 style="margin:0 0 10px;font-family:'IBM Plex Sans',sans-serif;font-size:16px;font-weight:600;color:#F2F4F7">Εταιρικές</h3>
         <p style="margin:0;font-size:13.5px;color:#8B94A3;line-height:1.65">Εσωτερικές απάτες, αθέμιτος ανταγωνισμός και αδιαφανείς συνεργασίες αγγίζουν τη συνέχεια της λειτουργίας.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · INDUSTRIES -->
+<section id="industries" data-screen-label="07 Industries" style="background:#0F1218">
+  <div style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) clamp(24px,5vw,48px)">
+    <p data-reveal="0" style="margin:0 0 18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#D98A2E;text-transform:uppercase">ΚΛΑΔΟΙ</p>
+    <h2 data-reveal="60" style="margin:0 0 36px;font-family:'IBM Plex Sans',sans-serif;font-size:clamp(28px,3.2vw,40px);font-weight:600;line-height:1.15;letter-spacing:-0.015em;color:#F2F4F7;max-width:26ch;text-wrap:balance">Σχεδιασμένο για το δικό σας περιβάλλον κινδύνου.</h2>
+    <div data-reveal="120" style="display:flex;flex-wrap:wrap;gap:10px" role="tablist" aria-label="Κλάδοι">
+      <sc-for list="{{ industries }}" as="ch" hint-placeholder-count="8">
+        <button onClick="{{ ch.onSelect }}" role="tab" aria-selected="{{ ch.selected }}" style="font-family:'Inter',sans-serif;font-size:14px;cursor:pointer;padding:10px 18px;border-radius:4px;background:{{ ch.bg }};color:{{ ch.color }};border:1px solid {{ ch.border }};transition:border-color 200ms cubic-bezier(0.22,1,0.36,1),color 200ms cubic-bezier(0.22,1,0.36,1),background 200ms cubic-bezier(0.22,1,0.36,1)">{{ ch.label }}</button>
+      </sc-for>
+    </div>
+    <div style="margin-top:32px;border-top:1px solid #2A3442;padding-top:24px;min-height:6.2em;display:flex;gap:22px;align-items:flex-start">
+      <div style="flex:none;width:48px;height:48px;border:1px solid #2A3442;border-radius:4px;background:#161B24;display:flex;align-items:center;justify-content:center;opacity:{{ indOp }};transition:opacity 200ms cubic-bezier(0.22,1,0.36,1)" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" style="display:{{ ind0 }}"><rect x="3" y="8" width="7" height="13"></rect><rect x="12" y="3" width="9" height="18"></rect><path d="M5.5 12 H8 M5.5 16 H8 M15 7 H18 M15 11 H18 M15 15 H18"></path></svg>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" style="display:{{ ind1 }}"><rect x="3" y="8" width="18" height="12" rx="1"></rect><path d="M9 8 V6.5 A1 1 0 0 1 10 5.5 H14 A1 1 0 0 1 15 6.5 V8 M3 13 H21"></path></svg>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" style="display:{{ ind2 }}"><path d="M12 4 V20 M9 20 H15 M5 7 H19 M5.7 7 L2.5 12 M5.7 7 L8.9 12 M2.5 12 A3.2 3.2 0 0 0 8.9 12 M18.3 7 L15.1 12 M18.3 7 L21.5 12 M15.1 12 A3.2 3.2 0 0 0 21.5 12"></path></svg>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" style="display:{{ ind3 }}"><path d="M4 4 V20 H20 M7 16 L11 11 L13.5 13.5 L18 7 M18 7 H14.5 M18 7 V10.5"></path></svg>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" style="display:{{ ind4 }}"><circle cx="12" cy="5" r="2"></circle><path d="M12 7 V20 M5 13 A7 7 0 0 0 19 13 M9 10 H15"></path></svg>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" style="display:{{ ind5 }}"><path d="M3 9 L12 3 L21 9 M5 9 V18 M9.7 9 V18 M14.3 9 V18 M19 9 V18 M4 18 H20 M3 21 H21"></path></svg>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" style="display:{{ ind6 }}"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20 A7 7 0 0 1 19 20"></path></svg>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" style="display:{{ ind7 }}"><path d="M4 11 L12 4 L20 11 V20 H4 Z"></path><circle cx="9.5" cy="15" r="1.6"></circle><circle cx="14.5" cy="15" r="1.6"></circle></svg>
+      </div>
+      <div style="min-width:0">
+        <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;color:#5A6472;text-transform:uppercase">{{ industryLabel }}</p>
+        <p style="margin:10px 0 0;font-size:16px;color:#C7CDD6;max-width:68ch;opacity:{{ indOp }};transition:opacity 200ms cubic-bezier(0.22,1,0.36,1)">{{ industryText }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 1c · GRYPAS-AI SPOTLIGHT BAND -->
+<section id="grypas-teaser" data-screen-label="01c GRYPAS band" style="background:#06080B;border-top:1px solid #2A3442">
+  <div style="max-width:1320px;margin:0 auto;padding:clamp(56px,7vw,88px) clamp(24px,5vw,48px);display:flex;flex-wrap:wrap;gap:40px 56px;align-items:center">
+    <div style="flex:1.2 1 420px;min-width:0">
+      <p data-reveal="0" style="margin:0 0 20px;display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;color:#4D9FFF;border:1px solid rgba(77,159,255,0.35);border-radius:3px;padding:6px 12px">A 4IP INTELLIGENCE PRODUCT</p>
+      <p data-reveal="70" style="margin:0 0 22px;font-size:16px;color:#C7CDD6;max-width:64ch">GRYPAS-AI — παθητικός forensic scanner που αναλύει τη δικτυακή συμπεριφορά ενός κινητού για να εντοπίσει stalkerware, phishing και κρυφά κανάλια εντολών (C2), χωρίς εφαρμογή, χωρίς root, χωρίς φυσική πρόσβαση στη συσκευή. Κάθε εύρημα χαρτογραφείται σε MITRE ATT&amp;CK και παραδίδεται ως τεκμηριωμένη έκθεση.</p>
+      <a data-reveal="140" href="#grypas" style="display:inline-block;font-size:14.5px;font-weight:600;color:#4D9FFF;text-decoration:none">Δείτε πώς λειτουργεί →</a>
+    </div>
+    <div data-reveal="120" style="flex:0.8 1 300px;max-width:380px">
+      <div style="background:#FCFCFD;border-radius:4px;padding:22px 22px 18px" role="img" aria-label="Δείγμα έκθεσης GRYPAS-AI με απόρρητα στοιχεία">
+        <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.18em;color:#5A6472">GRYPAS-AI · ΕΚΘΕΣΗ · ΕΜΠΙΣΤΕΥΤΙΚΟ</p>
+        <div style="margin-top:16px;border-top:1px solid #E3E6EA;padding-top:14px;display:flex;flex-direction:column;gap:9px">
+          <span style="display:block;height:3px;width:78%;background:#C7CDD6;border-radius:2px"></span>
+          <span style="display:block;height:3px;width:54%;background:#1A1F27;border-radius:2px"></span>
+          <span style="display:block;height:3px;width:92%;background:#C7CDD6;border-radius:2px"></span>
+          <span style="display:block;height:3px;width:41%;background:#1A1F27;border-radius:2px"></span>
+          <span style="display:block;height:3px;width:70%;background:#C7CDD6;border-radius:2px"></span>
+        </div>
+        <div style="margin-top:16px;border-top:1px solid #E3E6EA;padding-top:14px;display:flex;justify-content:space-between;align-items:center;gap:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.14em;color:#8B94A3">MITRE ATT&amp;CK</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.14em;color:#1E9E63;border:1px solid #3DD68C;border-radius:3px;padding:3px 8px">ΤΕΚΜΗΡΙΩΜΕΝΟ</span>
+        </div>
       </div>
     </div>
   </div>
@@ -224,52 +296,70 @@
 <section id="capabilities" data-screen-label="04 Capabilities" style="background:#0F1218;border-top:1px solid #2A3442">
   <div style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) clamp(24px,5vw,48px)">
     <p data-reveal="0" style="margin:0 0 18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#D98A2E;text-transform:uppercase">ΠΕΔΙΑ ΔΡΑΣΗΣ</p>
-    <h2 data-reveal="60" style="margin:0 0 40px;font-family:'IBM Plex Sans',sans-serif;font-size:clamp(28px,3.2vw,40px);font-weight:600;line-height:1.15;letter-spacing:-0.015em;color:#F2F4F7">Επτά πεδία. Μία μεθοδολογία.</h2>
+    <h2 data-reveal="60" style="margin:0 0 40px;font-family:'IBM Plex Sans',sans-serif;font-size:clamp(28px,3.2vw,40px);font-weight:600;line-height:1.15;letter-spacing:-0.015em;color:#F2F4F7">Τέσσερις πυλώνες, μία μεθοδολογία.</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:#2A3442;border:1px solid #2A3442">
-      <div data-cap="1" data-reveal="0" style="background:#161B24;padding:30px 28px;transition:background 200ms cubic-bezier(0.22,1,0.36,1),box-shadow 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="background:#1F2733;box-shadow:inset 0 0 0 1px rgba(77,159,255,0.35)">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" aria-hidden="true" style="display:block;margin-bottom:18px"><circle cx="12" cy="12" r="9"></circle><path d="M12 3 V6 M12 18 V21 M3 12 H6 M18 12 H21 M12 12 L16 8"></path></svg>
-        <h3 style="margin:0 0 8px;font-family:'IBM Plex Sans',sans-serif;font-size:16px;font-weight:600;color:#F2F4F7">Security Advisory</h3>
-        <p style="margin:0 0 16px;font-size:13.5px;color:#8B94A3;line-height:1.65">Αξιολόγηση κινδύνου και σχεδιασμός ασφάλειας — πριν χρειαστεί.</p>
-        <span data-arrow="1" style="display:inline-block;color:#4D9FFF;font-size:14px" aria-hidden="true">→</span>
-      </div>
-      <div data-cap="2" data-reveal="70" style="background:#161B24;padding:30px 28px;transition:background 200ms cubic-bezier(0.22,1,0.36,1),box-shadow 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="background:#1F2733;box-shadow:inset 0 0 0 1px rgba(77,159,255,0.35)">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" aria-hidden="true" style="display:block;margin-bottom:18px"><rect x="4" y="8" width="10" height="13"></rect><path d="M14 12 H20 V21 M4 21 H20 M8 12 V13 M8 16 V17"></path></svg>
-        <h3 style="margin:0 0 8px;font-family:'IBM Plex Sans',sans-serif;font-size:16px;font-weight:600;color:#F2F4F7">Corporate Security</h3>
-        <p style="margin:0 0 16px;font-size:13.5px;color:#8B94A3;line-height:1.65">Ολοκληρωμένη προστασία εγκαταστάσεων, λειτουργιών και ανθρώπων.</p>
-        <span data-arrow="1" style="display:inline-block;color:#4D9FFF;font-size:14px" aria-hidden="true">→</span>
-      </div>
-      <div data-cap="3" data-reveal="140" style="background:#161B24;padding:30px 28px;transition:background 200ms cubic-bezier(0.22,1,0.36,1),box-shadow 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="background:#1F2733;box-shadow:inset 0 0 0 1px rgba(77,159,255,0.35)">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" aria-hidden="true" style="display:block;margin-bottom:18px"><circle cx="6" cy="6" r="2.5"></circle><circle cx="18" cy="9" r="2.5"></circle><circle cx="10" cy="18" r="2.5"></circle><path d="M8.2 7.2 L15.8 8.5 M7 8.4 L9.3 15.7 M16.2 10.9 L11.9 16.4"></path></svg>
-        <h3 style="margin:0 0 8px;font-family:'IBM Plex Sans',sans-serif;font-size:16px;font-weight:600;color:#F2F4F7">Investigations</h3>
-        <p style="margin:0 0 16px;font-size:13.5px;color:#8B94A3;line-height:1.65">Από την υποψία στην τεκμηρίωση — εντός νόμου, με αποδεικτική αξία.</p>
-        <span data-arrow="1" style="display:inline-block;color:#4D9FFF;font-size:14px" aria-hidden="true">→</span>
-      </div>
-      <div data-cap="4" data-reveal="210" style="background:#161B24;padding:30px 28px;transition:background 200ms cubic-bezier(0.22,1,0.36,1),box-shadow 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="background:#1F2733;box-shadow:inset 0 0 0 1px rgba(77,159,255,0.35)">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" aria-hidden="true" style="display:block;margin-bottom:18px"><path d="M2 12 H5 L8 6 L12 18 L15 9 L17 12 H22"></path></svg>
-        <h3 style="margin:0 0 8px;font-family:'IBM Plex Sans',sans-serif;font-size:16px;font-weight:600;color:#F2F4F7">TSCM / Αντίμετρα</h3>
-        <p style="margin:0 0 16px;font-size:13.5px;color:#8B94A3;line-height:1.65">Εντοπισμός συσκευών και καναλιών παρακολούθησης με εργαστηριακή μεθοδολογία.</p>
-        <span data-arrow="1" style="display:inline-block;color:#4D9FFF;font-size:14px" aria-hidden="true">→</span>
-      </div>
-      <div data-cap="5" data-reveal="0" style="background:#161B24;padding:30px 28px;transition:background 200ms cubic-bezier(0.22,1,0.36,1),box-shadow 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="background:#1F2733;box-shadow:inset 0 0 0 1px rgba(77,159,255,0.35)">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" aria-hidden="true" style="display:block;margin-bottom:18px"><path d="M12 2.5 L20 7 V17 L12 21.5 L4 17 V7 Z"></path><circle cx="12" cy="12" r="1.5"></circle></svg>
-        <h3 style="margin:0 0 8px;font-family:'IBM Plex Sans',sans-serif;font-size:16px;font-weight:600;color:#F2F4F7">Cyber Security</h3>
+      <div data-cap="1" data-reveal="0" style="background:#161B24;padding:32px 30px;transition:background 200ms cubic-bezier(0.22,1,0.36,1),box-shadow 200ms cubic-bezier(0.22,1,0.36,1);display:flex;flex-direction:column" style-hover="background:#1F2733;box-shadow:inset 0 0 0 1px rgba(77,159,255,0.35)">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" aria-hidden="true" style="display:block"><path d="M12 2.5 L20 7 V17 L12 21.5 L4 17 V7 Z"></path><circle cx="12" cy="12" r="1.5"></circle></svg>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.16em;color:#5A6472">01</span>
+        </div>
+        <h3 style="margin:0 0 8px;font-family:'IBM Plex Sans',sans-serif;font-size:17px;font-weight:600;color:#F2F4F7;display:flex;align-items:center;gap:10px;flex-wrap:wrap">Cyber Security<span style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.14em;color:#4D9FFF;border:1px solid rgba(77,159,255,0.4);border-radius:3px;padding:3px 8px">GRYPAS-AI</span></h3>
         <p style="margin:0 0 16px;font-size:13.5px;color:#8B94A3;line-height:1.65">Αξιολόγηση και θωράκιση της ψηφιακής σας επιφάνειας.</p>
-        <span data-arrow="1" style="display:inline-block;color:#4D9FFF;font-size:14px" aria-hidden="true">→</span>
+        <ul style="margin:0 0 18px;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px;font-size:12.5px;color:#8B94A3;line-height:1.55">
+          <li style="display:flex;gap:9px;align-items:baseline"><span style="color:#3A4656;font-family:'IBM Plex Mono',monospace;flex:none" aria-hidden="true">·</span><span>Forensic ανάλυση συσκευών και δικτυακής συμπεριφοράς</span></li>
+          <li style="display:flex;gap:9px;align-items:baseline"><span style="color:#3A4656;font-family:'IBM Plex Mono',monospace;flex:none" aria-hidden="true">·</span><span>Incident response και αποκατάσταση</span></li>
+          <li style="display:flex;gap:9px;align-items:baseline"><span style="color:#3A4656;font-family:'IBM Plex Mono',monospace;flex:none" aria-hidden="true">·</span><span>Τεχνικός έλεγχος ψηφιακών καναλιών (TSCM support)</span></li>
+        </ul>
+        <p style="margin:0 0 16px;padding-top:14px;border-top:1px solid #2A3442;font-size:12.5px;color:#C7CDD6;line-height:1.6;flex:1"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.16em;color:#D98A2E;display:block;margin-bottom:7px">ΓΙΑΤΙ ΕΜΑΣ</span>Γνωρίζουμε τις τεχνικές, τα εργαλεία και τον τρόπο σκέψης του αντιπάλου — και το μεταφράζουμε σε άμυνα.</p>
+        <button data-arrow="1" data-service="cyber" onClick="{{ openModal }}" style="align-self:flex-start;display:inline-flex;align-items:center;gap:9px;background:none;border:none;padding:0;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;color:#4D9FFF;transition:color 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:#F2F4F7">ΑΝΑΛΥΤΙΚΑ <span style="font-family:'Inter',sans-serif;font-size:14px" aria-hidden="true">→</span></button>
       </div>
-      <div data-cap="6" data-reveal="70" style="background:#161B24;padding:30px 28px;transition:background 200ms cubic-bezier(0.22,1,0.36,1),box-shadow 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="background:#1F2733;box-shadow:inset 0 0 0 1px rgba(77,159,255,0.35)">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" aria-hidden="true" style="display:block;margin-bottom:18px"><path d="M4 20 C 4 12, 10 14, 12 9 C 13.5 5.5, 18 5, 20 4"></path><circle cx="4" cy="20" r="1.6"></circle><circle cx="20" cy="4" r="1.6"></circle></svg>
-        <h3 style="margin:0 0 8px;font-family:'IBM Plex Sans',sans-serif;font-size:16px;font-weight:600;color:#F2F4F7">Close Protection</h3>
-        <p style="margin:0 0 16px;font-size:13.5px;color:#8B94A3;line-height:1.65">Διακριτική προστασία υψηλής εκπαίδευσης, σχεδιασμένη γύρω από τη ζωή σας.</p>
-        <span data-arrow="1" style="display:inline-block;color:#4D9FFF;font-size:14px" aria-hidden="true">→</span>
+      <div data-cap="2" data-reveal="70" style="background:#161B24;padding:32px 30px;transition:background 200ms cubic-bezier(0.22,1,0.36,1),box-shadow 200ms cubic-bezier(0.22,1,0.36,1);display:flex;flex-direction:column" style-hover="background:#1F2733;box-shadow:inset 0 0 0 1px rgba(77,159,255,0.35)">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" aria-hidden="true" style="display:block"><circle cx="6" cy="6" r="2.5"></circle><circle cx="18" cy="9" r="2.5"></circle><circle cx="10" cy="18" r="2.5"></circle><path d="M8.2 7.2 L15.8 8.5 M7 8.4 L9.3 15.7 M16.2 10.9 L11.9 16.4"></path></svg>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.16em;color:#5A6472">02</span>
+        </div>
+        <h3 style="margin:0 0 8px;font-family:'IBM Plex Sans',sans-serif;font-size:17px;font-weight:600;color:#F2F4F7;display:flex;align-items:center;gap:10px;flex-wrap:wrap">Investigations · OSINT</h3>
+        <p style="margin:0 0 16px;font-size:13.5px;color:#8B94A3;line-height:1.65">Από την υποψία στην τεκμηρίωση — εντός νόμου, με αποδεικτική αξία.</p>
+        <ul style="margin:0 0 18px;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px;font-size:12.5px;color:#8B94A3;line-height:1.55">
+          <li style="display:flex;gap:9px;align-items:baseline"><span style="color:#3A4656;font-family:'IBM Plex Mono',monospace;flex:none" aria-hidden="true">·</span><span>Due diligence προσώπων και εταιρειών</span></li>
+          <li style="display:flex;gap:9px;align-items:baseline"><span style="color:#3A4656;font-family:'IBM Plex Mono',monospace;flex:none" aria-hidden="true">·</span><span>Έρευνα ανοιχτών πηγών και ψηφιακού αποτυπώματος</span></li>
+          <li style="display:flex;gap:9px;align-items:baseline"><span style="color:#3A4656;font-family:'IBM Plex Mono',monospace;flex:none" aria-hidden="true">·</span><span>Εσωτερικές έρευνες και αθέμιτος ανταγωνισμός</span></li>
+        </ul>
+        <p style="margin:0 0 16px;padding-top:14px;border-top:1px solid #2A3442;font-size:12.5px;color:#C7CDD6;line-height:1.6;flex:1"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.16em;color:#D98A2E;display:block;margin-bottom:7px">ΓΙΑΤΙ ΕΜΑΣ</span>Απαντάμε στο «μπορώ να τους εμπιστευτώ;» με τεκμηριωμένη μεθοδολογία, διακριτικότητα και αποδεικτική αξία.</p>
+        <button data-arrow="1" data-service="investigations" onClick="{{ openModal }}" style="align-self:flex-start;display:inline-flex;align-items:center;gap:9px;background:none;border:none;padding:0;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;color:#4D9FFF;transition:color 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:#F2F4F7">ΑΝΑΛΥΤΙΚΑ <span style="font-family:'Inter',sans-serif;font-size:14px" aria-hidden="true">→</span></button>
       </div>
-      <div data-cap="7" data-reveal="140" style="background:#161B24;padding:30px 28px;transition:background 200ms cubic-bezier(0.22,1,0.36,1),box-shadow 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="background:#1F2733;box-shadow:inset 0 0 0 1px rgba(77,159,255,0.35)">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" aria-hidden="true" style="display:block;margin-bottom:18px"><path d="M3 20 A 9 9 0 0 1 21 20 M7.5 20 A 4.5 4.5 0 0 1 16.5 20"></path><circle cx="16" cy="9" r="1.6"></circle><path d="M12 20 L16 9"></path></svg>
-        <h3 style="margin:0 0 8px;font-family:'IBM Plex Sans',sans-serif;font-size:16px;font-weight:600;color:#F2F4F7">Protective Intelligence</h3>
-        <p style="margin:0 0 16px;font-size:13.5px;color:#8B94A3;line-height:1.65">Η απειλή αφήνει ίχνη πριν εμφανιστεί. Τα παρακολουθούμε.</p>
-        <span data-arrow="1" style="display:inline-block;color:#4D9FFF;font-size:14px" aria-hidden="true">→</span>
+      <div data-cap="3" data-reveal="140" style="background:#161B24;padding:32px 30px;transition:background 200ms cubic-bezier(0.22,1,0.36,1),box-shadow 200ms cubic-bezier(0.22,1,0.36,1);display:flex;flex-direction:column" style-hover="background:#1F2733;box-shadow:inset 0 0 0 1px rgba(77,159,255,0.35)">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" aria-hidden="true" style="display:block"><circle cx="12" cy="12" r="9"></circle><path d="M12 3 V6 M12 18 V21 M3 12 H6 M18 12 H21 M12 12 L16 8"></path></svg>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.16em;color:#5A6472">03</span>
+        </div>
+        <h3 style="margin:0 0 8px;font-family:'IBM Plex Sans',sans-serif;font-size:17px;font-weight:600;color:#F2F4F7;display:flex;align-items:center;gap:10px;flex-wrap:wrap">Security Consulting</h3>
+        <p style="margin:0 0 16px;font-size:13.5px;color:#8B94A3;line-height:1.65">Σχεδιασμός ασφάλειας για ανθρώπους, χώρους και λειτουργίες — πριν χρειαστεί.</p>
+        <ul style="margin:0 0 18px;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px;font-size:12.5px;color:#8B94A3;line-height:1.55">
+          <li style="display:flex;gap:9px;align-items:baseline"><span style="color:#3A4656;font-family:'IBM Plex Mono',monospace;flex:none" aria-hidden="true">·</span><span>TSCM · αντίμετρα τεχνικής επιτήρησης</span></li>
+          <li style="display:flex;gap:9px;align-items:baseline"><span style="color:#3A4656;font-family:'IBM Plex Mono',monospace;flex:none" aria-hidden="true">·</span><span>Ασφάλεια εγκαταστάσεων και κρίσιμων συναντήσεων</span></li>
+          <li style="display:flex;gap:9px;align-items:baseline"><span style="color:#3A4656;font-family:'IBM Plex Mono',monospace;flex:none" aria-hidden="true">·</span><span>Πολιτικές, εκπαίδευση και σχέδια αντίδρασης</span></li>
+        </ul>
+        <p style="margin:0 0 16px;padding-top:14px;border-top:1px solid #2A3442;font-size:12.5px;color:#C7CDD6;line-height:1.6;flex:1"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.16em;color:#D98A2E;display:block;margin-bottom:7px">ΓΙΑΤΙ ΕΜΑΣ</span>Η ασφάλειά σας αντιμετωπίζεται ως προτεραιότητα σχεδιασμού — με μετρήσιμα μέτρα, όχι υποσχέσεις.</p>
+        <button data-arrow="1" data-service="consulting" onClick="{{ openModal }}" style="align-self:flex-start;display:inline-flex;align-items:center;gap:9px;background:none;border:none;padding:0;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;color:#4D9FFF;transition:color 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:#F2F4F7">ΑΝΑΛΥΤΙΚΑ <span style="font-family:'Inter',sans-serif;font-size:14px" aria-hidden="true">→</span></button>
       </div>
-      <a href="#contact" data-reveal="210" style="background:#0F1218;padding:30px 28px;display:flex;flex-direction:column;justify-content:flex-end;text-decoration:none;transition:background 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="background:#161B24">
-        <p style="margin:0 0 10px;font-size:13.5px;color:#8B94A3;line-height:1.65">Δεν είστε βέβαιοι από πού να ξεκινήσετε;</p>
+      <div data-cap="4" data-reveal="210" style="background:#161B24;padding:32px 30px;transition:background 200ms cubic-bezier(0.22,1,0.36,1),box-shadow 200ms cubic-bezier(0.22,1,0.36,1);display:flex;flex-direction:column" style-hover="background:#1F2733;box-shadow:inset 0 0 0 1px rgba(77,159,255,0.35)">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" aria-hidden="true" style="display:block"><path d="M4 4 V20 H20 M7.5 16 V11 M12 16 V7.5 M16.5 16 V13"></path></svg>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.16em;color:#5A6472">04</span>
+        </div>
+        <h3 style="margin:0 0 8px;font-family:'IBM Plex Sans',sans-serif;font-size:17px;font-weight:600;color:#F2F4F7;display:flex;align-items:center;gap:10px;flex-wrap:wrap">Vulnerability · Risk Analysis</h3>
+        <p style="margin:0 0 16px;font-size:13.5px;color:#8B94A3;line-height:1.65">Χαρτογράφηση της έκθεσής σας και ιεράρχηση του ρίσκου.</p>
+        <ul style="margin:0 0 18px;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px;font-size:12.5px;color:#8B94A3;line-height:1.55">
+          <li style="display:flex;gap:9px;align-items:baseline"><span style="color:#3A4656;font-family:'IBM Plex Mono',monospace;flex:none" aria-hidden="true">·</span><span>Αξιολόγηση τεχνικής και φυσικής επιφάνειας</span></li>
+          <li style="display:flex;gap:9px;align-items:baseline"><span style="color:#3A4656;font-family:'IBM Plex Mono',monospace;flex:none" aria-hidden="true">·</span><span>Protective intelligence — ίχνη πριν το περιστατικό</span></li>
+          <li style="display:flex;gap:9px;align-items:baseline"><span style="color:#3A4656;font-family:'IBM Plex Mono',monospace;flex:none" aria-hidden="true">·</span><span>Ιεράρχηση ευρημάτων με σαφή προτεραιότητα</span></li>
+        </ul>
+        <p style="margin:0 0 16px;padding-top:14px;border-top:1px solid #2A3442;font-size:12.5px;color:#C7CDD6;line-height:1.6;flex:1"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.16em;color:#D98A2E;display:block;margin-bottom:7px">ΓΙΑΤΙ ΕΜΑΣ</span>Δεν μαντεύουμε πού είστε εκτεθειμένοι — το μετράμε.</p>
+        <button data-arrow="1" data-service="risk" onClick="{{ openModal }}" style="align-self:flex-start;display:inline-flex;align-items:center;gap:9px;background:none;border:none;padding:0;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;color:#4D9FFF;transition:color 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:#F2F4F7">ΑΝΑΛΥΤΙΚΑ <span style="font-family:'Inter',sans-serif;font-size:14px" aria-hidden="true">→</span></button>
+      </div>
+      <a href="#contact" data-reveal="280" style="grid-column:1 / -1;background:#0F1218;padding:26px 30px;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;text-decoration:none;transition:background 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="background:#161B24">
+        <p style="margin:0;font-size:13.5px;color:#8B94A3;line-height:1.65">Δεν είστε βέβαιοι από πού να ξεκινήσετε;</p>
         <span style="font-size:14px;font-weight:600;color:#4D9FFF">Εμπιστευτική συμβουλευτική →</span>
       </a>
     </div>
@@ -296,6 +386,77 @@
   </div>
 </section>
 
+<!-- 8b · ΠΟΙΟΙ ΕΙΜΑΣΤΕ -->
+<section id="team" data-screen-label="08b Team" style="background:#0F1218;border-top:1px solid #2A3442">
+  <div style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) clamp(24px,5vw,48px)">
+    <p data-reveal="0" style="margin:0 0 18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#D98A2E;text-transform:uppercase">ΠΟΙΟΙ ΕΙΜΑΣΤΕ</p>
+    <h2 data-reveal="60" style="margin:0 0 20px;font-family:'IBM Plex Sans',sans-serif;font-size:clamp(28px,3.2vw,40px);font-weight:600;line-height:1.15;letter-spacing:-0.015em;color:#F2F4F7;max-width:26ch;text-wrap:balance">Η εξέλιξη μιας πολύχρονης πορείας στην ασφάλεια.</h2>
+    <p data-reveal="120" style="margin:0 0 48px;font-size:16px;color:#C7CDD6;max-width:68ch">Η 4IP δημιουργήθηκε και στελεχώθηκε από πρώην αξιωματικούς της Ελληνικής Αστυνομίας, επαγγελματίες security managers, ειδικούς στα αντίμετρα τεχνικής επιτήρησης, τεχνικούς cyber security και ιδιωτικούς ερευνητές. Χαρτογραφούμε τις απειλές πριν γίνουν περιστατικά — με τη μεθοδολογία και τα εργαλεία εκείνων που τις δημιουργούν.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px">
+      <div data-reveal="0" style="background:#161B24;border:1px solid #2A3442;border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:16px">
+        <div style="width:100%;aspect-ratio:1/1;position:relative;filter:grayscale(1) brightness(0.85) contrast(0.95)">
+          <svg viewBox="0 0 100 100" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none" aria-hidden="true">
+            <rect width="100" height="100" fill="#0F1218"></rect>
+            <circle cx="50" cy="40" r="13" fill="none" stroke="#2A3442" stroke-width="1.5"></circle>
+            <path d="M24 88 A26 26 0 0 1 76 88" fill="none" stroke="#2A3442" stroke-width="1.5"></path>
+            <text x="50" y="45" text-anchor="middle" fill="#3A4656" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1">4IP</text>
+          </svg>
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="team-1" shape="rounded" radius="4" placeholder=" " hint-size="100%,220px"></x-import>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:#8B94A3">ΕΠΙΚΕΦΑΛΗΣ ΕΡΕΥΝΩΝ</span>
+          <span style="font-size:12px;color:#5A6472">Θεσμικό υπόβαθρο στη δημόσια ασφάλεια</span>
+        </div>
+      </div>
+      <div data-reveal="70" style="background:#161B24;border:1px solid #2A3442;border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:16px">
+        <div style="width:100%;aspect-ratio:1/1;position:relative;filter:grayscale(1) brightness(0.85) contrast(0.95)">
+          <svg viewBox="0 0 100 100" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none" aria-hidden="true">
+            <rect width="100" height="100" fill="#0F1218"></rect>
+            <circle cx="50" cy="40" r="13" fill="none" stroke="#2A3442" stroke-width="1.5"></circle>
+            <path d="M24 88 A26 26 0 0 1 76 88" fill="none" stroke="#2A3442" stroke-width="1.5"></path>
+            <text x="50" y="45" text-anchor="middle" fill="#3A4656" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1">4IP</text>
+          </svg>
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="team-2" shape="rounded" radius="4" placeholder=" " hint-size="100%,220px"></x-import>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:#8B94A3">ΔΙΕΥΘΥΝΤΗΣ ΕΠΙΧΕΙΡΗΣΕΩΝ ΠΕΔΙΟΥ</span>
+          <span style="font-size:12px;color:#5A6472">Θεσμικό υπόβαθρο στη δημόσια ασφάλεια</span>
+        </div>
+      </div>
+      <div data-reveal="140" style="background:#161B24;border:1px solid #2A3442;border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:16px">
+        <div style="width:100%;aspect-ratio:1/1;position:relative;filter:grayscale(1) brightness(0.85) contrast(0.95)">
+          <svg viewBox="0 0 100 100" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none" aria-hidden="true">
+            <rect width="100" height="100" fill="#0F1218"></rect>
+            <circle cx="50" cy="40" r="13" fill="none" stroke="#2A3442" stroke-width="1.5"></circle>
+            <path d="M24 88 A26 26 0 0 1 76 88" fill="none" stroke="#2A3442" stroke-width="1.5"></path>
+            <text x="50" y="45" text-anchor="middle" fill="#3A4656" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1">4IP</text>
+          </svg>
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="team-3" shape="rounded" radius="4" placeholder=" " hint-size="100%,220px"></x-import>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:#8B94A3">ΕΠΙΚΕΦΑΛΗΣ CYBER FORENSICS</span>
+          <span style="font-size:12px;color:#5A6472">Ψηφιακή εγκληματολογία &amp; ανάλυση δικτύων</span>
+        </div>
+      </div>
+      <div data-reveal="210" style="background:#161B24;border:1px solid #2A3442;border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:16px">
+        <div style="width:100%;aspect-ratio:1/1;position:relative;filter:grayscale(1) brightness(0.85) contrast(0.95)">
+          <svg viewBox="0 0 100 100" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none" aria-hidden="true">
+            <rect width="100" height="100" fill="#0F1218"></rect>
+            <circle cx="50" cy="40" r="13" fill="none" stroke="#2A3442" stroke-width="1.5"></circle>
+            <path d="M24 88 A26 26 0 0 1 76 88" fill="none" stroke="#2A3442" stroke-width="1.5"></path>
+            <text x="50" y="45" text-anchor="middle" fill="#3A4656" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1">4IP</text>
+          </svg>
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="team-4" shape="rounded" radius="4" placeholder=" " hint-size="100%,220px"></x-import>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:#8B94A3">ΣΥΜΒΟΥΛΟΣ ΑΣΦΑΛΕΙΑΣ &amp; ΔΙΑΧΕΙΡΙΣΗΣ ΚΙΝΔΥΝΟΥ</span>
+          <span style="font-size:12px;color:#5A6472">Σχεδιασμός μέτρων &amp; αξιολόγηση ρίσκου</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 6 · GRYPAS-AI -->
 <section id="grypas" data-screen-label="06 GRYPAS-AI" style="background:#06080B;border-top:1px solid #2A3442;border-bottom:1px solid #2A3442">
   <div style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) clamp(24px,5vw,48px);display:flex;flex-wrap:wrap;gap:56px;align-items:center">
@@ -309,7 +470,7 @@
         <li style="display:flex;gap:12px;align-items:baseline"><span style="color:#3DD68C;font-family:'IBM Plex Mono',monospace" aria-hidden="true">✓</span><span>Άνθρωπος στο τηλέφωνο σε κάθε βήμα</span></li>
       </ul>
       <div data-reveal="200" style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
-        <a href="#packages" style="display:inline-block;background:#1E6FD9;color:#F2F4F7;font-weight:600;font-size:15px;padding:13px 22px;border:1px solid #1E6FD9;border-radius:4px;text-decoration:none;transition:background 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="background:#2A7CE6">Γρήγορος αυτόματος έλεγχος — από €90</a>
+        <a href="#contact" style="display:inline-block;background:#1E6FD9;color:#F2F4F7;font-weight:600;font-size:15px;padding:13px 22px;border:1px solid #1E6FD9;border-radius:4px;text-decoration:none;transition:background 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="background:#2A7CE6">Γρήγορος αυτόματος έλεγχος</a>
         <a href="#contact" style="display:inline-block;color:#C7CDD6;font-size:15px;padding:13px 22px;border:1px solid #2A3442;border-radius:4px;text-decoration:none;transition:border-color 200ms cubic-bezier(0.22,1,0.36,1),color 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="border-color:#8B94A3;color:#F2F4F7">Πλήρης αξιολόγηση με αναλυτή</a>
       </div>
       <p data-reveal="230" style="margin:14px 0 0;font-size:13px;color:#8B94A3;max-width:52ch">Αν ο αυτόματος έλεγχος εντοπίσει κάτι σοβαρό, σας καθοδηγούμε με ασφάλεια στα επόμενα βήματα.</p>
@@ -395,13 +556,7 @@
       </div>
       <p style="margin:8px 0 0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#5A6472">ΕΝΑΛΛΑΚΤΙΚΟ VISUAL · GLOBAL MESH · ΣΥΓΚΛΙΣΗ: GR</p>
     </div>
-  </div>
-</section>
-
-<!-- 6b · ΠΑΚΕΤΑ -->
-<section id="packages" data-screen-label="06b Packages" style="background:#0A0C10;border-bottom:1px solid #2A3442">
-  <div style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) clamp(24px,5vw,48px)">
-    <div data-reveal="0" style="margin-bottom:64px;background:#161B24;border:1px solid #2A3442;border-radius:4px;padding:36px clamp(26px,4vw,44px);display:flex;flex-wrap:wrap;gap:32px 56px;align-items:flex-start">
+    <div data-reveal="0" style="margin-top:64px;background:#161B24;border:1px solid #2A3442;border-radius:4px;padding:36px clamp(26px,4vw,44px);display:flex;flex-wrap:wrap;gap:32px 56px;align-items:flex-start">
       <div style="flex:1 1 300px;min-width:0">
         <p style="margin:0 0 14px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;color:#8B94A3">ΤΑ ΟΡΙΑ ΜΑΣ — ΜΕ ΕΙΛΙΚΡΙΝΕΙΑ</p>
         <p style="margin:0;font-size:16px;color:#C7CDD6;max-width:38ch">Η αξιοπιστία μετριέται κι από αυτά που ΔΕΝ ισχυριζόμαστε.</p>
@@ -412,65 +567,6 @@
         <li style="display:flex;gap:12px;align-items:baseline"><span style="color:#5A6472;font-family:'IBM Plex Mono',monospace" aria-hidden="true">—</span><span>Δεν υποσχόμαστε 100% ανίχνευση.</span></li>
         <li style="display:flex;gap:12px;align-items:baseline"><span style="color:#5A6472;font-family:'IBM Plex Mono',monospace" aria-hidden="true">—</span><span>Δεν διαβάζουμε το περιεχόμενο των επικοινωνιών σας.</span></li>
       </ul>
-    </div>
-    <p data-reveal="0" style="margin:0 0 18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#D98A2E;text-transform:uppercase">ΠΑΚΕΤΑ</p>
-    <h2 data-reveal="60" style="margin:0 0 40px;font-family:'IBM Plex Sans',sans-serif;font-size:clamp(28px,3.2vw,40px);font-weight:600;line-height:1.15;letter-spacing:-0.015em;color:#F2F4F7">Για κάθε ανάγκη.</h2>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px">
-      <div data-reveal="0" style="background:#161B24;border:1px solid #2A3442;border-radius:4px;padding:28px 26px;display:flex;flex-direction:column;gap:12px">
-        <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;color:#8B94A3">ΒΑΣΙΚΟ</p>
-        <p style="margin:0;font-family:'IBM Plex Sans',sans-serif;font-size:20px;font-weight:600;color:#F2F4F7">€90–150</p>
-        <p style="margin:0;font-size:13.5px;color:#8B94A3;line-height:1.65;flex:1">Αυτόματος έλεγχος, μια πρώτη εικόνα.</p>
-        <a href="#contact" style="font-size:14px;font-weight:600;color:#4D9FFF;text-decoration:none">Έναρξη →</a>
-      </div>
-      <div data-reveal="70" style="background:#161B24;border:1px solid #4D9FFF;border-radius:4px;padding:28px 26px;display:flex;flex-direction:column;gap:12px;position:relative">
-        <span style="position:absolute;top:-9px;left:24px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.16em;color:#4D9FFF;background:#0A0C10;padding:2px 8px;border:1px solid #4D9FFF;border-radius:3px">ΠΡΟΤΕΙΝΟΜΕΝΟ</span>
-        <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;color:#8B94A3">ΠΛΗΡΕΣ</p>
-        <p style="margin:0;font-family:'IBM Plex Sans',sans-serif;font-size:20px;font-weight:600;color:#F2F4F7">€390+</p>
-        <p style="margin:0;font-size:13.5px;color:#8B94A3;line-height:1.65;flex:1">Με ανθρώπινη αξιολόγηση της 4IP και καθοδήγηση.</p>
-        <a href="#contact" style="font-size:14px;font-weight:600;color:#4D9FFF;text-decoration:none">Έναρξη →</a>
-      </div>
-      <div data-reveal="140" style="background:#161B24;border:1px solid #2A3442;border-radius:4px;padding:28px 26px;display:flex;flex-direction:column;gap:12px">
-        <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;color:#8B94A3">ΣΤΕΛΕΧΟΣ</p>
-        <p style="margin:0;font-family:'IBM Plex Sans',sans-serif;font-size:20px;font-weight:600;color:#F2F4F7">Κατόπιν συνεννόησης</p>
-        <p style="margin:0;font-size:13.5px;color:#8B94A3;line-height:1.65;flex:1">Πιο γρήγορα, πιο διακριτικά.</p>
-        <a href="#contact" style="font-size:14px;font-weight:600;color:#4D9FFF;text-decoration:none">Συζήτηση →</a>
-      </div>
-      <div data-reveal="210" style="background:#161B24;border:1px solid #2A3442;border-radius:4px;padding:28px 26px;display:flex;flex-direction:column;gap:12px">
-        <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;color:#8B94A3">ΕΤΑΙΡΕΙΑ</p>
-        <p style="margin:0;font-family:'IBM Plex Sans',sans-serif;font-size:20px;font-weight:600;color:#F2F4F7">Κατόπιν συνεννόησης</p>
-        <p style="margin:0;font-size:13.5px;color:#8B94A3;line-height:1.65;flex:1">Πολλές συσκευές, συγκεντρωτική έκθεση.</p>
-        <a href="#contact" style="font-size:14px;font-weight:600;color:#4D9FFF;text-decoration:none">Συζήτηση →</a>
-      </div>
-    </div>
-    <p data-reveal="260" style="margin:22px 0 0;font-size:12.5px;color:#5A6472">Οι τιμές είναι ενδεικτικές. Κάθε αξιολόγηση προσαρμόζεται στην περίπτωσή σας.</p>
-  </div>
-</section>
-
-<!-- 7 · INDUSTRIES -->
-<section id="industries" data-screen-label="07 Industries" style="background:#0F1218">
-  <div style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) clamp(24px,5vw,48px)">
-    <p data-reveal="0" style="margin:0 0 18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#D98A2E;text-transform:uppercase">ΚΛΑΔΟΙ</p>
-    <h2 data-reveal="60" style="margin:0 0 36px;font-family:'IBM Plex Sans',sans-serif;font-size:clamp(28px,3.2vw,40px);font-weight:600;line-height:1.15;letter-spacing:-0.015em;color:#F2F4F7;max-width:26ch;text-wrap:balance">Σχεδιασμένο για το δικό σας περιβάλλον κινδύνου.</h2>
-    <div data-reveal="120" style="display:flex;flex-wrap:wrap;gap:10px" role="tablist" aria-label="Κλάδοι">
-      <sc-for list="{{ industries }}" as="ch" hint-placeholder-count="8">
-        <button onClick="{{ ch.onSelect }}" role="tab" aria-selected="{{ ch.selected }}" style="font-family:'Inter',sans-serif;font-size:14px;cursor:pointer;padding:10px 18px;border-radius:4px;background:{{ ch.bg }};color:{{ ch.color }};border:1px solid {{ ch.border }};transition:border-color 200ms cubic-bezier(0.22,1,0.36,1),color 200ms cubic-bezier(0.22,1,0.36,1),background 200ms cubic-bezier(0.22,1,0.36,1)">{{ ch.label }}</button>
-      </sc-for>
-    </div>
-    <div style="margin-top:32px;border-top:1px solid #2A3442;padding-top:24px;min-height:6.2em;display:flex;gap:22px;align-items:flex-start">
-      <div style="flex:none;width:48px;height:48px;border:1px solid #2A3442;border-radius:4px;background:#161B24;display:flex;align-items:center;justify-content:center;opacity:{{ indOp }};transition:opacity 200ms cubic-bezier(0.22,1,0.36,1)" aria-hidden="true">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" style="display:{{ ind0 }}"><rect x="3" y="8" width="7" height="13"></rect><rect x="12" y="3" width="9" height="18"></rect><path d="M5.5 12 H8 M5.5 16 H8 M15 7 H18 M15 11 H18 M15 15 H18"></path></svg>
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" style="display:{{ ind1 }}"><rect x="3" y="8" width="18" height="12" rx="1"></rect><path d="M9 8 V6.5 A1 1 0 0 1 10 5.5 H14 A1 1 0 0 1 15 6.5 V8 M3 13 H21"></path></svg>
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" style="display:{{ ind2 }}"><path d="M12 4 V20 M9 20 H15 M5 7 H19 M5.7 7 L2.5 12 M5.7 7 L8.9 12 M2.5 12 A3.2 3.2 0 0 0 8.9 12 M18.3 7 L15.1 12 M18.3 7 L21.5 12 M15.1 12 A3.2 3.2 0 0 0 21.5 12"></path></svg>
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" style="display:{{ ind3 }}"><path d="M4 4 V20 H20 M7 16 L11 11 L13.5 13.5 L18 7 M18 7 H14.5 M18 7 V10.5"></path></svg>
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" style="display:{{ ind4 }}"><circle cx="12" cy="5" r="2"></circle><path d="M12 7 V20 M5 13 A7 7 0 0 0 19 13 M9 10 H15"></path></svg>
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" style="display:{{ ind5 }}"><path d="M3 9 L12 3 L21 9 M5 9 V18 M9.7 9 V18 M14.3 9 V18 M19 9 V18 M4 18 H20 M3 21 H21"></path></svg>
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" style="display:{{ ind6 }}"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20 A7 7 0 0 1 19 20"></path></svg>
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8B94A3" stroke-width="1.5" style="display:{{ ind7 }}"><path d="M4 11 L12 4 L20 11 V20 H4 Z"></path><circle cx="9.5" cy="15" r="1.6"></circle><circle cx="14.5" cy="15" r="1.6"></circle></svg>
-      </div>
-      <div style="min-width:0">
-        <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;color:#5A6472;text-transform:uppercase">{{ industryLabel }}</p>
-        <p style="margin:10px 0 0;font-size:16px;color:#C7CDD6;max-width:68ch;opacity:{{ indOp }};transition:opacity 200ms cubic-bezier(0.22,1,0.36,1)">{{ industryText }}</p>
-      </div>
     </div>
   </div>
 </section>
@@ -518,70 +614,39 @@
   </div>
 </section>
 
-<!-- 8b · ΠΟΙΟΙ ΕΙΜΑΣΤΕ -->
-<section id="team" data-screen-label="08b Team" style="background:#0F1218;border-top:1px solid #2A3442">
+<!-- ΠΑΚΕΤΑ — προσωρινά κρυμμένο, αφαίρεσε το display:none για επανεμφάνιση -->
+<section id="packages" data-screen-label="06b Packages" style="display:none;background:#0A0C10;border-bottom:1px solid #2A3442">
   <div style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) clamp(24px,5vw,48px)">
-    <p data-reveal="0" style="margin:0 0 18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#D98A2E;text-transform:uppercase">ΠΟΙΟΙ ΕΙΜΑΣΤΕ</p>
-    <h2 data-reveal="60" style="margin:0 0 20px;font-family:'IBM Plex Sans',sans-serif;font-size:clamp(28px,3.2vw,40px);font-weight:600;line-height:1.15;letter-spacing:-0.015em;color:#F2F4F7;max-width:26ch;text-wrap:balance">Η εξέλιξη μιας πολύχρονης πορείας στην ασφάλεια.</h2>
-    <p data-reveal="120" style="margin:0 0 48px;font-size:16px;color:#C7CDD6;max-width:68ch">Η 4IP δημιουργήθηκε και στελεχώθηκε από πρώην αξιωματικούς της Ελληνικής Αστυνομίας, επαγγελματίες security managers, ειδικούς στα αντίμετρα τεχνικής επιτήρησης, τεχνικούς cyber security και ιδιωτικούς ερευνητές.</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px">
-      <div data-reveal="0" style="background:#161B24;border:1px solid #2A3442;border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:16px">
-        <div style="width:100%;aspect-ratio:1/1;position:relative;filter:grayscale(1) brightness(0.85) contrast(0.95)">
-          <svg viewBox="0 0 100 100" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none" aria-hidden="true">
-            <rect width="100" height="100" fill="#0F1218"></rect>
-            <circle cx="50" cy="40" r="13" fill="none" stroke="#2A3442" stroke-width="1.5"></circle>
-            <path d="M24 88 A26 26 0 0 1 76 88" fill="none" stroke="#2A3442" stroke-width="1.5"></path>
-            <text x="50" y="45" text-anchor="middle" fill="#3A4656" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1">4IP</text>
-          </svg>
-          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="team-1" shape="rounded" radius="4" placeholder=" " hint-size="100%,220px"></x-import>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:5px">
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:#8B94A3">ΠΡΩΗΝ ΑΞΙΩΜΑΤΙΚΟΣ ΕΛ.ΑΣ. · SECURITY MANAGER</span>
-        </div>
+    <p data-reveal="0" style="margin:0 0 18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#D98A2E;text-transform:uppercase">ΠΑΚΕΤΑ</p>
+    <h2 data-reveal="60" style="margin:0 0 40px;font-family:'IBM Plex Sans',sans-serif;font-size:clamp(28px,3.2vw,40px);font-weight:600;line-height:1.15;letter-spacing:-0.015em;color:#F2F4F7">Για κάθε ανάγκη.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px">
+      <div data-reveal="0" style="background:#161B24;border:1px solid #2A3442;border-radius:4px;padding:28px 26px;display:flex;flex-direction:column;gap:12px">
+        <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;color:#8B94A3">ΒΑΣΙΚΟ</p>
+        <p style="margin:0;font-family:'IBM Plex Sans',sans-serif;font-size:20px;font-weight:600;color:#F2F4F7">€90–150</p>
+        <p style="margin:0;font-size:13.5px;color:#8B94A3;line-height:1.65;flex:1">Αυτόματος έλεγχος, μια πρώτη εικόνα.</p>
+        <a href="#contact" style="font-size:14px;font-weight:600;color:#4D9FFF;text-decoration:none">Έναρξη →</a>
       </div>
-      <div data-reveal="70" style="background:#161B24;border:1px solid #2A3442;border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:16px">
-        <div style="width:100%;aspect-ratio:1/1;position:relative;filter:grayscale(1) brightness(0.85) contrast(0.95)">
-          <svg viewBox="0 0 100 100" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none" aria-hidden="true">
-            <rect width="100" height="100" fill="#0F1218"></rect>
-            <circle cx="50" cy="40" r="13" fill="none" stroke="#2A3442" stroke-width="1.5"></circle>
-            <path d="M24 88 A26 26 0 0 1 76 88" fill="none" stroke="#2A3442" stroke-width="1.5"></path>
-            <text x="50" y="45" text-anchor="middle" fill="#3A4656" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1">4IP</text>
-          </svg>
-          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="team-2" shape="rounded" radius="4" placeholder=" " hint-size="100%,220px"></x-import>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:5px">
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:#8B94A3">TSCM SPECIALIST · ΑΝΤΙΜΕΤΡΑ ΕΠΙΤΗΡΗΣΗΣ</span>
-        </div>
+      <div data-reveal="70" style="background:#161B24;border:1px solid #4D9FFF;border-radius:4px;padding:28px 26px;display:flex;flex-direction:column;gap:12px;position:relative">
+        <span style="position:absolute;top:-9px;left:24px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.16em;color:#4D9FFF;background:#0A0C10;padding:2px 8px;border:1px solid #4D9FFF;border-radius:3px">ΠΡΟΤΕΙΝΟΜΕΝΟ</span>
+        <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;color:#8B94A3">ΠΛΗΡΕΣ</p>
+        <p style="margin:0;font-family:'IBM Plex Sans',sans-serif;font-size:20px;font-weight:600;color:#F2F4F7">€390+</p>
+        <p style="margin:0;font-size:13.5px;color:#8B94A3;line-height:1.65;flex:1">Με ανθρώπινη αξιολόγηση της 4IP και καθοδήγηση.</p>
+        <a href="#contact" style="font-size:14px;font-weight:600;color:#4D9FFF;text-decoration:none">Έναρξη →</a>
       </div>
-      <div data-reveal="140" style="background:#161B24;border:1px solid #2A3442;border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:16px">
-        <div style="width:100%;aspect-ratio:1/1;position:relative;filter:grayscale(1) brightness(0.85) contrast(0.95)">
-          <svg viewBox="0 0 100 100" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none" aria-hidden="true">
-            <rect width="100" height="100" fill="#0F1218"></rect>
-            <circle cx="50" cy="40" r="13" fill="none" stroke="#2A3442" stroke-width="1.5"></circle>
-            <path d="M24 88 A26 26 0 0 1 76 88" fill="none" stroke="#2A3442" stroke-width="1.5"></path>
-            <text x="50" y="45" text-anchor="middle" fill="#3A4656" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1">4IP</text>
-          </svg>
-          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="team-3" shape="rounded" radius="4" placeholder=" " hint-size="100%,220px"></x-import>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:5px">
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:#8B94A3">CYBER SECURITY ENGINEER</span>
-        </div>
+      <div data-reveal="140" style="background:#161B24;border:1px solid #2A3442;border-radius:4px;padding:28px 26px;display:flex;flex-direction:column;gap:12px">
+        <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;color:#8B94A3">ΣΤΕΛΕΧΟΣ</p>
+        <p style="margin:0;font-family:'IBM Plex Sans',sans-serif;font-size:20px;font-weight:600;color:#F2F4F7">Κατόπιν συνεννόησης</p>
+        <p style="margin:0;font-size:13.5px;color:#8B94A3;line-height:1.65;flex:1">Πιο γρήγορα, πιο διακριτικά.</p>
+        <a href="#contact" style="font-size:14px;font-weight:600;color:#4D9FFF;text-decoration:none">Συζήτηση →</a>
       </div>
-      <div data-reveal="210" style="background:#161B24;border:1px solid #2A3442;border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:16px">
-        <div style="width:100%;aspect-ratio:1/1;position:relative;filter:grayscale(1) brightness(0.85) contrast(0.95)">
-          <svg viewBox="0 0 100 100" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none" aria-hidden="true">
-            <rect width="100" height="100" fill="#0F1218"></rect>
-            <circle cx="50" cy="40" r="13" fill="none" stroke="#2A3442" stroke-width="1.5"></circle>
-            <path d="M24 88 A26 26 0 0 1 76 88" fill="none" stroke="#2A3442" stroke-width="1.5"></path>
-            <text x="50" y="45" text-anchor="middle" fill="#3A4656" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1">4IP</text>
-          </svg>
-          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="team-4" shape="rounded" radius="4" placeholder=" " hint-size="100%,220px"></x-import>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:5px">
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:#8B94A3">ΙΔΙΩΤΙΚΟΣ ΕΡΕΥΝΗΤΗΣ · INVESTIGATIONS</span>
-        </div>
+      <div data-reveal="210" style="background:#161B24;border:1px solid #2A3442;border-radius:4px;padding:28px 26px;display:flex;flex-direction:column;gap:12px">
+        <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;color:#8B94A3">ΕΤΑΙΡΕΙΑ</p>
+        <p style="margin:0;font-family:'IBM Plex Sans',sans-serif;font-size:20px;font-weight:600;color:#F2F4F7">Κατόπιν συνεννόησης</p>
+        <p style="margin:0;font-size:13.5px;color:#8B94A3;line-height:1.65;flex:1">Πολλές συσκευές, συγκεντρωτική έκθεση.</p>
+        <a href="#contact" style="font-size:14px;font-weight:600;color:#4D9FFF;text-decoration:none">Συζήτηση →</a>
       </div>
     </div>
+    <p data-reveal="260" style="margin:22px 0 0;font-size:12.5px;color:#5A6472">Οι τιμές είναι ενδεικτικές. Κάθε αξιολόγηση προσαρμόζεται στην περίπτωσή σας.</p>
   </div>
 </section>
 
@@ -643,7 +708,53 @@
   </div>
 </section>
 
+
+
 </main>
+
+<div id="svcModal" style="display:{{ modalDisplay }};position:fixed;inset:0;z-index:3000;flex-direction:column">
+  <div onClick="{{ closeModal }}" style="position:absolute;inset:0;background:rgba(10,12,16,0.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:{{ modalOpacity }};transition:opacity 420ms cubic-bezier(0.22,1,0.36,1)"></div>
+  <div role="dialog" aria-modal="true" aria-labelledby="svcModalTitle" style="position:relative;flex:1;min-height:0;display:flex;flex-direction:column;background:#0A0C10;opacity:{{ modalOpacity }};transform:translateY({{ modalShift }});transition:opacity 420ms cubic-bezier(0.22,1,0.36,1),transform 560ms cubic-bezier(0.22,1,0.36,1)">
+    <div style="height:1px;background:linear-gradient(90deg,#E5A83B,rgba(229,168,59,0) 62%)"></div>
+    <div style="flex:none;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px clamp(20px,5vw,56px);border-bottom:1px solid #2A3442;background:rgba(10,12,16,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)">
+      <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.2em;color:#8B94A3;text-transform:uppercase">{{ modalKicker }}</p>
+      <button id="svcModalClose" onClick="{{ closeModal }}" aria-label="Κλείσιμο" style="flex:none;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:none;border:1px solid #2A3442;border-radius:50%;color:#8B94A3;cursor:pointer;transition:color 220ms cubic-bezier(0.22,1,0.36,1),border-color 220ms cubic-bezier(0.22,1,0.36,1),transform 220ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:#E5A83B;border-color:#E5A83B;transform:rotate(90deg)">
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" aria-hidden="true" style="display:block"><path d="M1 1 L13 13 M13 1 L1 13"></path></svg>
+      </button>
+    </div>
+    <div style="flex:1;min-height:0;overflow-y:auto">
+      <div style="max-width:1320px;margin:0 auto;padding:clamp(36px,6vw,72px) clamp(20px,5vw,56px) clamp(40px,6vw,80px)">
+        <div style="display:flex;flex-wrap:wrap;gap:40px 64px;align-items:flex-start">
+          <div style="flex:1.15 1 420px;min-width:0">
+            <h2 id="svcModalTitle" style="margin:0 0 20px;font-family:'IBM Plex Sans',sans-serif;font-size:clamp(28px,3.6vw,46px);font-weight:600;line-height:1.1;letter-spacing:-0.015em;color:#F2F4F7;max-width:24ch;text-wrap:balance">{{ modalTitle }}</h2>
+            <p style="margin:0;font-size:17px;color:#C7CDD6;max-width:64ch">{{ modalLead }}</p>
+          </div>
+          <div style="flex:0.85 1 320px;min-width:0;max-width:520px;border:1px solid #2A3442;border-radius:4px;background:#0F1218;padding:20px">
+        <svg viewBox="0 0 520 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:{{ svcG1 }};width:100%;height:auto" aria-hidden="true"><circle cx="150" cy="150" r="104" stroke="#2A3442"></circle><circle cx="150" cy="150" r="70" stroke="#2A3442" stroke-dasharray="2 6"></circle><circle cx="150" cy="150" r="36" stroke="#2A3442"></circle><path d="M150 150 L246 92" stroke="#4D9FFF" opacity="0.55"></path><path d="M150 150 L232 196" stroke="#4D9FFF" opacity="0.35"></path><circle cx="150" cy="150" r="4.5" fill="#4D9FFF"></circle><circle cx="246" cy="92" r="3" fill="#8B94A3"></circle><circle cx="232" cy="196" r="3" fill="#E5A83B"></circle><path d="M300 78 H500 M300 130 H500 M300 182 H500 M300 234 H500" stroke="#161B24"></path><path d="M300 104 L330 104 L340 86 L352 122 L362 100 L372 104 H420 L430 92 L440 116 L450 104 H500" stroke="#4D9FFF" stroke-width="1.15" opacity="0.8"></path><text x="300" y="66" fill="#5A6472" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.4">NETWORK BEHAVIOUR</text><text x="300" y="212" fill="#8B94A3" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.4">C2 · STALKERWARE · TSCM</text><text x="300" y="262" fill="#E5A83B" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.4">INDICATOR ISOLATED</text></svg>
+        <svg viewBox="0 0 520 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:{{ svcG2 }};width:100%;height:auto" aria-hidden="true"><circle cx="90" cy="70" r="4" fill="#8B94A3"></circle><circle cx="212" cy="46" r="4" fill="#8B94A3"></circle><circle cx="330" cy="96" r="4" fill="#8B94A3"></circle><circle cx="152" cy="176" r="4" fill="#8B94A3"></circle><circle cx="286" cy="216" r="4" fill="#8B94A3"></circle><circle cx="424" cy="160" r="4" fill="#8B94A3"></circle><circle cx="238" cy="128" r="6" fill="#4D9FFF"></circle><circle cx="238" cy="128" r="15" stroke="#4D9FFF" opacity="0.32"></circle><path d="M90 70 L238 128 M212 46 L238 128 M330 96 L238 128 M152 176 L238 128 M286 216 L238 128 M424 160 L238 128" stroke="#2A3442"></path><path d="M330 96 L424 160" stroke="#4D9FFF" opacity="0.4"></path><path d="M90 70 L152 176" stroke="#4D9FFF" opacity="0.28"></path><text x="252" y="124" fill="#C7CDD6" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.4">SUBJECT</text><text x="24" y="272" fill="#5A6472" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.4">ENTITY GRAPH · OSINT + FIELD CORROBORATION</text></svg>
+        <svg viewBox="0 0 520 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:{{ svcG3 }};width:100%;height:auto" aria-hidden="true"><rect x="24" y="60" width="180" height="180" stroke="#2A3442"></rect><rect x="52" y="88" width="124" height="124" stroke="#2A3442" stroke-dasharray="3 6"></rect><rect x="88" y="124" width="52" height="52" stroke="#4D9FFF" opacity="0.6"></rect><text x="98" y="154" fill="#4D9FFF" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.2">CORE</text><text x="24" y="46" fill="#5A6472" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.4">LAYERED PERIMETER</text><path d="M248 84 H496 M248 132 H496 M248 180 H496" stroke="#2A3442"></path><circle cx="262" cy="84" r="3.5" fill="#4D9FFF"></circle><circle cx="262" cy="132" r="3.5" fill="#8B94A3"></circle><circle cx="262" cy="180" r="3.5" fill="#8B94A3"></circle><text x="278" y="78" fill="#C7CDD6" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.2">POLICY</text><text x="278" y="126" fill="#C7CDD6" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.2">SYSTEMS</text><text x="278" y="174" fill="#C7CDD6" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.2">PEOPLE</text><path d="M248 232 H496" stroke="#E5A83B" opacity="0.5"></path><text x="248" y="252" fill="#E5A83B" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.4">SECURE CONFERENCE ROOM · TSCM SWEEP</text></svg>
+        <svg viewBox="0 0 520 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:{{ svcG4 }};width:100%;height:auto" aria-hidden="true"><path d="M40 250 V50" stroke="#2A3442"></path><path d="M40 250 H490" stroke="#2A3442"></path><rect x="70" y="170" width="52" height="80" fill="#1F2733"></rect><rect x="146" y="126" width="52" height="124" fill="#1F2733"></rect><rect x="222" y="92" width="52" height="158" fill="#2A3442"></rect><rect x="298" y="146" width="52" height="104" fill="#1F2733"></rect><rect x="374" y="200" width="52" height="50" fill="#1F2733"></rect><path d="M222 92 H274" stroke="#E5A83B" stroke-width="2"></path><path d="M40 130 H490" stroke="#4D9FFF" stroke-dasharray="3 6" opacity="0.5"></path><text x="330" y="122" fill="#4D9FFF" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.2">RISK THRESHOLD</text><text x="216" y="80" fill="#E5A83B" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.2">PRIORITY 01</text><text x="40" y="278" fill="#5A6472" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.4">EXPOSURE MEASURED · NOT ESTIMATED</text></svg>
+            <p style="margin:14px 0 0;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.14em;color:#5A6472">{{ modalGfxCaption }}</p>
+          </div>
+        </div>
+        <div style="margin-top:clamp(40px,5vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:#2A3442;border:1px solid #2A3442">
+          <sc-for list="{{ modalItems }}" as="it" hint-placeholder-count="4">
+            <div style="background:#12161D;padding:26px 26px">
+              <p style="margin:0 0 10px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.18em;color:#5A6472">{{ it.n }}</p>
+              <p style="margin:0 0 7px;font-family:'IBM Plex Sans',sans-serif;font-size:16px;font-weight:600;color:#F2F4F7">{{ it.t }}</p>
+              <p style="margin:0;font-size:13.5px;color:#8B94A3;line-height:1.65">{{ it.d }}</p>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top:clamp(36px,4vw,56px);display:flex;flex-wrap:wrap;gap:32px 56px;align-items:flex-end;justify-content:space-between;border-top:1px solid #2A3442;padding-top:32px">
+          <p style="margin:0;flex:1 1 420px;font-size:15px;color:#C7CDD6;line-height:1.7;max-width:64ch"><span style="display:block;margin-bottom:8px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.16em;color:#D98A2E">ΓΙΑΤΙ ΕΜΑΣ</span>{{ modalWhy }}</p>
+          <a href="#contact" onClick="{{ closeModal }}" style="flex:none;display:inline-block;background:#1E6FD9;color:#F2F4F7;font-weight:600;font-size:15px;padding:14px 26px;border-radius:4px;text-decoration:none;transition:background 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="background:#2A7CE6">Εμπιστευτική συμβουλευτική →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <footer data-screen-label="Footer" style="background:#0F1218;border-top:1px solid #2A3442;position:relative;z-index:2">
   <div style="max-width:1320px;margin:0 auto;padding:64px clamp(24px,5vw,48px) 40px">
@@ -657,11 +768,11 @@
       <div>
         <p style="margin:0 0 14px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;color:#D98A2E">ΥΠΗΡΕΣΙΕΣ</p>
         <div style="display:flex;flex-direction:column;gap:9px;font-size:13.5px">
-          <a href="#capabilities" style="color:#8B94A3;text-decoration:none;transition:color 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:#F2F4F7">Security Advisory</a>
-          <a href="#capabilities" style="color:#8B94A3;text-decoration:none;transition:color 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:#F2F4F7">Investigations</a>
-          <a href="#capabilities" style="color:#8B94A3;text-decoration:none;transition:color 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:#F2F4F7">TSCM / Αντίμετρα</a>
           <a href="#capabilities" style="color:#8B94A3;text-decoration:none;transition:color 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:#F2F4F7">Cyber Security</a>
-          <a href="#capabilities" style="color:#8B94A3;text-decoration:none;transition:color 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:#F2F4F7">Close Protection</a>
+          <a href="#capabilities" style="color:#8B94A3;text-decoration:none;transition:color 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:#F2F4F7">Investigations · OSINT</a>
+          <a href="#capabilities" style="color:#8B94A3;text-decoration:none;transition:color 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:#F2F4F7">Security Consulting</a>
+          <a href="#capabilities" style="color:#8B94A3;text-decoration:none;transition:color 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:#F2F4F7">Vulnerability · Risk Analysis</a>
+          <a href="#grypas" style="color:#8B94A3;text-decoration:none;transition:color 200ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:#F2F4F7">GRYPAS-AI</a>
         </div>
       </div>
       <div>
@@ -674,13 +785,18 @@
         </div>
       </div>
     </div>
-    <p style="margin:48px 0 0;padding-top:24px;border-top:1px solid #2A3442;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:#5A6472">[ΑΔΕΙΑ ΛΕΙΤΟΥΡΓΙΑΣ — PLACEHOLDER] · © 2026 4IP · ΧΩΡΙΣ TRACKERS · ΜΗΔΕΝΙΚΟΙ ΙΧΝΗΛΑΤΕΣ ΤΡΙΤΩΝ</p>
+    <p style="margin:48px 0 0;padding-top:24px;border-top:1px solid #2A3442;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:#5A6472">[ΑΔΕΙΑ ΛΕΙΤΟΥΡΓΙΑΣ — PLACEHOLDER] · © 2026 4IP · ΕΛΑΧΙΣΤΟΠΟΙΗΣΗ ΔΕΔΟΜΕΝΩΝ · ΚΑΝΕΝΑ ΔΙΑΦΗΜΙΣΤΙΚΟ TRACKING</p>
   </div>
 </footer>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: null, &quot;dotGrid&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Εμφάνιση&quot;}, &quot;animations&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Κίνηση&quot;}}">
 class Component extends DCLogic {
   state = {
+    overlay: null,
+    overlayVisible: false,
+    introSrc: 'about:blank',
+    modal: null,
+    modalIn: false,
     stage: 5,
     industry: 0,
     indOp: 1,
@@ -695,6 +811,23 @@ class Component extends DCLogic {
     this.observers = [];
     this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches || (this.props.animations === false);
 
+    this.onIntroMsg = (e) => {
+      if (e.data && e.data.type === '4ip-intro-ended' && this.state.overlay === 'intro') this.hideOverlay();
+    };
+    window.addEventListener('message', this.onIntroMsg);
+    this.onEscOverlay = (e) => { if (e.key === 'Escape' && this.state.overlay === 'replay') this.hideOverlay(); };
+    document.addEventListener('keydown', this.onEscOverlay);
+    // για προβολή σε ΚΑΘΕ load, αφαίρεσε τον έλεγχο sessionStorage
+    let introSeen = true;
+    try { introSeen = sessionStorage.getItem('4ip_intro_seen') === '1'; } catch (e) {}
+    if (!this.reduced && !introSeen) this.showOverlay('intro');
+    else {
+      const ov0 = document.getElementById('introOverlay');
+      if (ov0) { ov0.style.display = 'none'; ov0.style.opacity = '0'; ov0.style.pointerEvents = 'none'; }
+      document.documentElement.classList.add('intro-unlocked');
+      document.documentElement.style.overflow = '';
+    }
+
     this.onResize = () => {
       const m = window.innerWidth <= 1024;
       const n = window.innerWidth <= 1280;
@@ -703,7 +836,7 @@ class Component extends DCLogic {
     window.addEventListener('resize', this.onResize);
 
     const nav = document.getElementById('nav4ip');
-    this.onScroll = () => { if (nav) nav.style.height = window.scrollY > 40 ? '52px' : '64px'; };
+    this.onScroll = () => { const s = window.scrollY > 40; if (nav) nav.style.height = s ? '54px' : '64px'; if (nav) nav.style.background = s ? 'rgba(10,12,16,0.92)' : 'rgba(10,12,16,0.86)'; };
     window.addEventListener('scroll', this.onScroll, { passive: true });
 
     if (!this.reduced) {
@@ -725,10 +858,111 @@ class Component extends DCLogic {
     (this.observers || []).forEach(o => o.disconnect());
     (this.timers || []).forEach(t => { clearInterval(t); clearTimeout(t); });
     (this.anims || []).forEach(a => a.cancel());
+    if (this.onKeyModal) document.removeEventListener('keydown', this.onKeyModal);
+    if (this.onIntroMsg) window.removeEventListener('message', this.onIntroMsg);
+    if (this.onEscOverlay) document.removeEventListener('keydown', this.onEscOverlay);
+    if (this.introFallback) clearTimeout(this.introFallback);
+    document.documentElement.classList.add('intro-unlocked');
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
     if (this.cvRaf) cancelAnimationFrame(this.cvRaf);
     if (this.heroRaf) cancelAnimationFrame(this.heroRaf);
     if (this.webRaf) cancelAnimationFrame(this.webRaf);
     if (this.scanRaf) cancelAnimationFrame(this.scanRaf);
+  }
+
+  showOverlay(mode) {
+    if (mode === 'replay') {
+      this.pendingSrc = '4iP-Hero-AI-message-embedded.html#sound';
+    } else {
+      let firstTime = true;
+      try { firstTime = !localStorage.getItem('4ip_intro_sound_done'); } catch (e) {}
+      if (firstTime) {
+        // 1η φορά → με ήχο
+        this.pendingSrc = '4iP-Hero-AI-message-embedded.html#once&sound';
+        try { localStorage.setItem('4ip_intro_sound_done', '1'); } catch (e) {}
+      } else {
+        // κάθε επόμενη φορά → muted
+        this.pendingSrc = '4iP-Hero-AI-message-embedded.html#once';
+      }
+    }
+    document.documentElement.classList.remove('intro-unlocked');
+    document.documentElement.style.overflow = 'hidden';
+    const ov = document.getElementById('introOverlay');
+    if (ov) { ov.style.display = 'block'; ov.style.opacity = '1'; ov.style.pointerEvents = 'auto'; }
+    this.setState({ overlay: mode, overlayVisible: true });
+    if (mode === 'intro') {
+      this.introFallback = setTimeout(() => this.hideOverlay(), 18000);
+    } else {
+      setTimeout(() => { const c = document.getElementById('introClose'); if (c) c.focus(); }, 60);
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.pendingSrc) {
+      const fr = document.getElementById('introFrame');
+      if (fr) {
+        const sp = document.getElementById('introSplash');
+        if (sp) { sp.style.opacity = '1'; sp.style.display = 'flex'; }
+        fr.addEventListener('load', () => {
+          setTimeout(() => {
+            if (!sp) return;
+            sp.style.opacity = '0';
+            setTimeout(() => { sp.style.display = 'none'; }, 520);
+          }, 220);
+        }, { once: true });
+        fr.src = this.pendingSrc;
+        this.pendingSrc = null;
+      }
+    }
+  }
+
+  hideOverlay() {
+    if (!this.state.overlay) return;
+    if (this.introFallback) { clearTimeout(this.introFallback); this.introFallback = null; }
+    const wasReplay = this.state.overlay === 'replay';
+    document.documentElement.classList.add('intro-unlocked');
+    document.documentElement.style.overflow = '';
+    try { sessionStorage.setItem('4ip_intro_seen', '1'); } catch (e) {}
+    const ov = document.getElementById('introOverlay');
+    if (ov) { ov.style.opacity = '0'; ov.style.pointerEvents = 'none'; }
+    this.setState({ overlayVisible: false });
+    setTimeout(() => {
+      const fr = document.getElementById('introFrame');
+      if (fr) fr.src = 'about:blank';
+      if (ov) ov.style.display = 'none';
+      this.setState({ overlay: null });
+      if (wasReplay) { const b = document.getElementById('introReplay'); if (b) b.focus(); }
+    }, 620);
+  }
+
+  openService(key, trigger) {
+    this.lastTrigger = trigger || null;
+    document.body.style.overflow = 'hidden';
+    this.setState({ modal: key, modalIn: this.reduced });
+    if (!this.reduced) requestAnimationFrame(() => requestAnimationFrame(() => this.setState({ modalIn: true })));
+    setTimeout(() => { const c = document.getElementById('svcModalClose'); if (c) c.focus(); }, 40);
+    if (!this.onKeyModal) {
+      this.onKeyModal = (e) => {
+        if (!this.state.modal) return;
+        if (e.key === 'Escape') { this.closeService(); return; }
+        if (e.key !== 'Tab') return;
+        const box = document.getElementById('svcModal');
+        if (!box) return;
+        const f = box.querySelectorAll('a[href],button');
+        if (!f.length) return;
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      };
+      document.addEventListener('keydown', this.onKeyModal);
+    }
+  }
+
+  closeService() {
+    document.body.style.overflow = '';
+    this.setState({ modal: null, modalIn: false });
+    if (this.lastTrigger) { try { this.lastTrigger.focus(); } catch (e) {} }
   }
 
   setupReveals() {
@@ -851,16 +1085,20 @@ class Component extends DCLogic {
     const el = document.getElementById('timeline');
     if (!el) return;
     const io = new IntersectionObserver(ents => {
-      if (!ents[0].isIntersecting) return;
-      io.disconnect();
+      if (!ents[0].isIntersecting) {
+        if (this.tlTimer) { clearInterval(this.tlTimer); this.tlTimer = null; }
+        this.setState({ stage: -1 });
+        return;
+      }
+      if (this.tlTimer) return;
       let s = 0;
       this.setState({ stage: 0 });
-      const t = setInterval(() => {
+      this.tlTimer = setInterval(() => {
         s++;
-        if (s > 5) { clearInterval(t); return; }
+        if (s > 6) { clearInterval(this.tlTimer); this.tlTimer = null; return; }
         this.setState({ stage: s });
       }, 550);
-      this.timers.push(t);
+      this.timers.push(this.tlTimer);
     }, { threshold: 0.3 });
     io.observe(el);
     this.observers.push(io);
@@ -1129,6 +1367,62 @@ class Component extends DCLogic {
 
   renderVals() {
     const S = this.state;
+    const SERVICES = {
+      cyber: {
+        kicker: 'CYBER · TSCM · DIGITAL FORENSICS',
+        title: 'Cyber Security & Αντίμετρα Τεχνικής Επιτήρησης',
+        lead: 'Η τεχνική επιτήρηση εξελίσσεται: από συγκαλυμμένες συσκευές ήχου/εικόνας μέχρι απομακρυσμένη πρόσβαση σε συσκευές και δίκτυα. Στόχος μας είναι η προστασία των πληροφοριών σας από μη εξουσιοδοτημένη πρόσβαση, διατηρώντας την εμπιστευτικότητα, την ακεραιότητα και τη διαθεσιμότητά τους.',
+        items: [
+          { t: 'Στρατηγική Ασφάλειας Πληροφοριών', d: 'Σχεδιασμός πολιτικών, ρόλων και ελέγχων προσαρμοσμένων στο περιβάλλον σας.' },
+          { t: 'Cyber Risk Assessment', d: 'Αποτίμηση έκθεσης σε hacking, phishing και βιομηχανική κατασκοπεία.' },
+          { t: 'TSCM — Αντίμετρα Τεχνικής Επιτήρησης', d: 'Ανίχνευση συσκευών παρακολούθησης και ακρόασης, ακόμη και όταν λειτουργούν διαλείπουσα.' },
+          { t: 'Secure Conference Room', d: 'Θωράκιση χώρων ευαίσθητων συναντήσεων.' },
+          { t: 'GRYPAS-AI', d: 'Παθητική ανάλυση δικτυακής συμπεριφοράς κινητού για ανίχνευση stalkerware/C2/phishing, με χαρτογράφηση σε MITRE ATT&CK.' }
+        ],
+        caption: 'ΠΑΘΗΤΙΚΗ ΑΝΑΛΥΣΗ ΔΙΚΤΥΟΥ · ΑΝΤΙΜΕΤΡΑ ΕΠΙΤΗΡΗΣΗΣ',
+        why: 'Έχουμε βαθιά γνώση των τεχνικών, των εργαλείων και του τρόπου δράσης των επιτιθέμενων — και τη μεταφράζουμε σε τεκμηριωμένα μέτρα προστασίας.'
+      },
+      investigations: {
+        kicker: 'INVESTIGATIONS · OSINT · EVIDENCE',
+        title: 'Έρευνες & Ανοιχτές Πηγές (OSINT)',
+        lead: 'Όταν θίγονται τα συμφέροντά σας και χρειάζεστε τεκμηριωμένη εικόνα για ένα πρόσωπο, μια ομάδα ή μια εταιρεία, αναλαμβάνουμε με διακριτικότητα. Οι έρευνες διεξάγονται εντός του νομικού πλαισίου και καταλήγουν σε αξιόπιστη έκθεση με τεκμήρια, αξιοποιήσιμη σε λήψη αποφάσεων ή σε δικαστικές διαφορές.',
+        items: [
+          { t: 'Ιδιωτικές Έρευνες', d: 'Από υποψίες σε τεκμηριωμένα στοιχεία για προσωπικά και οικογενειακά ζητήματα.' },
+          { t: 'Νομικές Έρευνες', d: 'Υποστήριξη δικαστικών διαφορών, εντοπισμός μαρτύρων, συλλογή αποδεικτικών στοιχείων.' },
+          { t: 'Επιχειρηματικές Έρευνες & Due Diligence', d: 'Έλεγχος αξιοπιστίας συνεργατών/εταιρειών πριν από δεσμεύσεις.' },
+          { t: 'Έλεγχος Ιστορικού (Background Checks)', d: 'Εμπιστευτική επαλήθευση ισχυρισμών και μετριασμός κινδύνου.' }
+        ],
+        caption: 'ΓΡΑΦΟΣ ΟΝΤΟΤΗΤΩΝ · ΔΙΑΣΤΑΥΡΩΣΗ ΠΗΓΩΝ',
+        why: 'Δουλεύουμε με νόμιμες μεθόδους συλλογής και ανάλυσης πληροφοριών (OSINT) και παραδίδουμε τεκμήρια, όχι εικασίες.'
+      },
+      consulting: {
+        kicker: 'SECURITY CONSULTING · RISK',
+        title: 'Συμβουλευτική Ασφάλειας',
+        lead: 'Η ασφάλεια δεν είναι προϊόν, αλλά διαδικασία. Σχεδιάζουμε μέτρα με βάση την πραγματική έκθεση κινδύνου, με στελέχη που φέρουν πρακτική εμπειρία πεδίου.',
+        items: [
+          { t: 'Μελέτη & Σχεδιασμός Ασφάλειας', d: 'Ολοκληρωμένο πλάνο προστασίας για χώρους, εγκαταστάσεις και οργανισμούς.' },
+          { t: 'Σχεδιασμός Συστημάτων (Consulting)', d: 'Μελέτη συναγερμών, CCTV και περιμετρικής ασφάλειας ως προδιαγραφή, όχι ως πώληση εξοπλισμού.' },
+          { t: 'Επιτήρηση & Φύλαξη Ευπαθών Στόχων', d: 'Σχεδιασμός και εποπτεία για κρίσιμες εγκαταστάσεις.' },
+          { t: 'Ενσωμάτωση TSCM', d: 'Αντίμετρα τεχνικής επιτήρησης όπου το απαιτεί το προφίλ κινδύνου.' }
+        ],
+        caption: 'ΔΙΑΔΟΧΙΚΕΣ ΖΩΝΕΣ ΠΡΟΣΤΑΣΙΑΣ',
+        why: 'Η ιδιωτικότητα και η ασφάλειά σας πρέπει να είναι απαραβίαστες — και δουλειά μας είναι να τις θωρακίζουμε με μετρήσιμα, ρεαλιστικά μέτρα.'
+      },
+      risk: {
+        kicker: 'VULNERABILITY · RISK ANALYSIS',
+        title: 'Ανάλυση Κινδύνου & Έκθεση Τρωτότητας',
+        lead: 'Εντοπίζουμε τα τρωτά σημεία πριν γίνουν περιστατικά. Παραδίδουμε διορατική, ρεαλιστική και προσαρμοσμένη έκθεση τρωτότητας για οικίες, επαγγελματικούς χώρους και οργανισμούς.',
+        items: [
+          { t: 'Έκθεση Τρωτότητας', d: 'Αποτύπωση αδυναμιών στα υπάρχοντα συστήματα ασφαλείας.' },
+          { t: 'Χαρτογράφηση Απειλών', d: 'Ψηφιακές, φυσικές, φήμης και εταιρικές, σε ενιαία εικόνα.' },
+          { t: 'Cyber Risk Assessment', d: 'Αποτίμηση ψηφιακής έκθεσης παράλληλα με τη φυσική.' },
+          { t: 'Roadmap Μέτρων', d: 'Ιεραρχημένες συστάσεις με προτεραιότητες και επόμενα βήματα.' }
+        ],
+        caption: 'ΙΕΡΑΡΧΗΣΗ ΕΚΘΕΣΗΣ ΚΙΝΔΥΝΟΥ',
+        why: 'Ρεαλιστικές λύσεις και όχι εκθέσεις ιδεών — αναλυτική μελέτη δεδομένων με έμφαση στη λεπτομέρεια.'
+      }
+    };
+    const svc = S.modal ? SERVICES[S.modal] : null;
 
     const stageNames = ['Identify', 'Investigate', 'Analyze', 'Verify', 'Report', 'Protect'];
     const stageDescs = [
@@ -1139,8 +1433,9 @@ class Component extends DCLogic {
       'Έκθεση με αποδεικτική αξία, κατανοητή σε μη τεχνικούς.',
       'Μέτρα προστασίας και παρακολούθηση σε βάθος χρόνου.'
     ];
+    const allLit = S.stage >= 6;
     const stages = stageNames.map((n, i) => {
-      const past = i < S.stage, cur = i === S.stage;
+      const past = i < S.stage && !allLit, cur = i === S.stage || allLit;
       return {
         name: n,
         desc: stageDescs[i],
@@ -1183,6 +1478,29 @@ class Component extends DCLogic {
 
     return {
       dotGridDisplay: (this.props.dotGrid ?? true) ? 'block' : 'none',
+      overlayDisplay: S.overlay ? 'block' : 'none',
+      overlayOpacity: S.overlayVisible ? 1 : 0,
+      overlayPointer: S.overlayVisible ? 'auto' : 'none',
+      overlayRole: S.overlay === 'replay' ? 'dialog' : 'presentation',
+      overlayModal: S.overlay === 'replay' ? 'true' : 'false',
+      closeDisplay: S.overlay === 'replay' ? 'flex' : 'none',
+      openReplay: () => { this.setState({ menuOpen: false }); this.showOverlay('replay'); },
+      closeOverlay: () => this.hideOverlay(),
+      modalDisplay: S.modal ? 'flex' : 'none',
+      modalOpacity: (this.reduced || S.modalIn) ? 1 : 0,
+      modalShift: (this.reduced || S.modalIn) ? '0px' : '18px',
+      modalKicker: svc ? svc.kicker : '',
+      modalTitle: svc ? svc.title : '',
+      modalLead: svc ? svc.lead : '',
+      modalItems: svc ? svc.items.map((it, i) => ({ n: '0' + (i + 1), t: it.t, d: it.d })) : [],
+      modalGfxCaption: svc ? svc.caption : '',
+      svcG1: S.modal === 'cyber' ? 'block' : 'none',
+      svcG2: S.modal === 'investigations' ? 'block' : 'none',
+      svcG3: S.modal === 'consulting' ? 'block' : 'none',
+      svcG4: S.modal === 'risk' ? 'block' : 'none',
+      modalWhy: svc ? svc.why : '',
+      openModal: (e) => { const b = e.currentTarget; this.openService(b.getAttribute('data-service'), b); },
+      closeModal: () => this.closeService(),
       navLinksDisplay: S.isMobile ? 'none' : 'flex',
       tagDisplay: (S.isMobile || S.isNarrow) ? 'none' : 'inline-block',
       burgerDisplay: S.isMobile ? 'flex' : 'none',
