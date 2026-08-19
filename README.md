@@ -1,6 +1,6 @@
 ## Δομή
 ```
-index.html                          Αρχική (Claude Design template)
+index.html                          Αρχική 
 support.js                          Runtime που κάνει render το template
 image-slot.js                       Team photo placeholders
 4iP-logo.svg / 4iP-Intro-poster.png Assets intro
